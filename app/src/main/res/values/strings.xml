@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Bus Timing App</string>
+    <string name="OpenSidebar">Open Slidebar</string>
+    <string name="CloseSidebar">Close Slidebar</string>
 </resources>

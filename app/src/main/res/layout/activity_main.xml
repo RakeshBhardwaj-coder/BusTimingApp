@@ -1,75 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    android:id="@+id/drawableLayout">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:weightSum="2"
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
+            android:background="@color/purple_500"
+            app:title="Bus Timing App"
+            app:titleTextColor="@color/white"
+            app:titleMarginStart="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:weightSum="2"
             >
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Vehicle Time"
-                app:autoSizeTextType="uniform"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="@string/app_name"
-                android:onClick="Clicked"
-                android:src="@drawable/ic_add_bus"
-                tools:ignore="OnClick" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your Vehicle Time"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="20sp"
-                app:autoSizeMaxTextSize="100sp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:orientation="vertical"
                 android:layout_weight="1"
-                android:layout_gravity="center"
-                android:contentDescription="@string/app_name"
-                android:onClick="Clicked"
-                android:src="@drawable/ic_add_bus"
-                tools:ignore="OnClick" />
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Vehicle Time"
+                    android:singleLine="true"
+
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/app_name"
+                    android:onClick="Clicked"
+                    android:src="@drawable/ic_add_bus"
+                    tools:ignore="OnClick" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="Your Vehicle Time"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/app_name"
+                    android:onClick="Clicked"
+                    android:src="@drawable/ic_add_bus"
+                    tools:ignore="OnClick" />
+            </LinearLayout>
+
+
+
         </LinearLayout>
 
 
 
-    </LinearLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/sideBar"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/sidemenu"
+        android:layout_gravity="start"
+        ></com.google.android.material.navigation.NavigationView>
 
 
 
-
-</RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

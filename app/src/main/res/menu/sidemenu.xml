@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_home"
+            android:icon="@drawable/ic_add_bus"
+            android:title="Home"
+            ></item>
+        <item
+            android:id="@+id/menu_addVehicleTime"
+            android:icon="@drawable/ic_add_bus"
+            android:title="Add Vechicle Time"
+            ></item>
+        <item
+            android:id="@+id/menu_logout"
+            android:icon="@drawable/ic_add_bus"
+            android:title="Logout"
+            ></item>
+    </group>
+
+</menu>
