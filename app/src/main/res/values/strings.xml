@@ -2,4 +2,15 @@
     <string name="app_name">Bus Timing App</string>
     <string name="OpenSidebar">Open Slidebar</string>
     <string name="CloseSidebar">Close Slidebar</string>
+    <string name="normalPadding">4dp</string>
+    <string name="normalLayoutMargin">4dp</string>
+
+
+
+    <string-array name="busTypes">
+        <item>Java</item>
+        <item>Kotlin</item>
+        <item>Python</item>
+        <item>CPP</item>
+    </string-array>
 </resources>

@@ -7,19 +7,25 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import rakesh.app.bustimingapp.BusRegistration.BusRegistrationPage;
+import rakesh.app.bustimingapp.Auth.LoginPage;
 
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+
+    EditText etStoppage, etDestination;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.menu_home:
-                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(MainActivity.this, BusRegistrationPage.class));
+//                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+//                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
-                    case R.id.menu_addVehicleTime:
-
-                        Toast.makeText(getApplicationContext(),"add Vehicle Time",Toast.LENGTH_SHORT).show();
+                    case R.id.menu_registerBusDetails:
+//                        RegistrationPage();
                         drawerLayout.closeDrawer(GravityCompat.START);
+
                         break;
 
                     case R.id.menu_logout:
@@ -59,9 +66,20 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        etStoppage = findViewById(R.id.etStoppage);
+        etDestination = findViewById(R.id.etDestination);
     }
 
     public void Clicked(View view){
+
+        etStoppage.setText("");
+        etDestination.setText("");
         Toast.makeText(this,"clicked",Toast.LENGTH_SHORT).show();
+    }
+    public void RegistrationPage(){
+        Intent i = new Intent(getApplicationContext(), LoginPage.class);
+        this.startActivity(i);
+        Toast.makeText(getApplicationContext(),"Register bus details",Toast.LENGTH_SHORT).show();
     }
 }

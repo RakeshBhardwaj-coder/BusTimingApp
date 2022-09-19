@@ -8,9 +8,9 @@
             android:title="Home"
             ></item>
         <item
-            android:id="@+id/menu_addVehicleTime"
+            android:id="@+id/menu_registerBusDetails"
             android:icon="@drawable/ic_add_bus"
-            android:title="Add Vechicle Time"
+            android:title="Register Bus Details"
             ></item>
         <item
             android:id="@+id/menu_logout"
