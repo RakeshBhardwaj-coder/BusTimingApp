@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "850681847639",
+    "project_id": "get-your-time-1bd72",
+    "storage_bucket": "get-your-time-1bd72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850681847639:android:0430d9d713e9ebdf02a812",
+        "android_client_info": {
+          "package_name": "rakesh.app.bustimingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850681847639-riap0p1us0fhkg115nfb2r66gptoedi5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT8uF0iOQ926UkGCURPSF4fjAdoPE49zI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850681847639-riap0p1us0fhkg115nfb2r66gptoedi5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850681847639:android:63924676607d85fb02a812",
+        "android_client_info": {
+          "package_name": "rakesh.app.whereismybus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850681847639-riap0p1us0fhkg115nfb2r66gptoedi5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT8uF0iOQ926UkGCURPSF4fjAdoPE49zI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850681847639-riap0p1us0fhkg115nfb2r66gptoedi5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
