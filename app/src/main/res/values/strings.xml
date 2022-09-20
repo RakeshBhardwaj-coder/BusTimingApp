@@ -6,7 +6,6 @@
     <string name="normalLayoutMargin">4dp</string>
 
 
-
     <string-array name="busTypes">
         <item>Java</item>
         <item>Kotlin</item>

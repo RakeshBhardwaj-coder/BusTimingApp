@@ -15,9 +15,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
+import rakesh.app.bustimingapp.Auth.SignInPage;
 import rakesh.app.bustimingapp.BusRegistration.BusRegistrationPage;
-import rakesh.app.bustimingapp.Auth.LoginPage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     EditText etStoppage, etDestination;
+
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawableLayout);
         navigationView = findViewById(R.id.sideBar);
         toolbar = findViewById(R.id.toolBar);
+
+        mAuth = FirebaseAuth.getInstance();
 
         setSupportActionBar(toolbar);
 
@@ -53,12 +58,13 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_registerBusDetails:
-//                        RegistrationPage();
+                        SignInPage();
                         drawerLayout.closeDrawer(GravityCompat.START);
 
                         break;
 
                     case R.id.menu_logout:
+                        mAuth.signOut();
                         Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
@@ -77,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
         etDestination.setText("");
         Toast.makeText(this,"clicked",Toast.LENGTH_SHORT).show();
     }
-    public void RegistrationPage(){
-        Intent i = new Intent(getApplicationContext(), LoginPage.class);
+    public void SignInPage(){
+        Intent i = new Intent(getApplicationContext(), SignInPage.class);
         this.startActivity(i);
-        Toast.makeText(getApplicationContext(),"Register bus details",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"SignInPage",Toast.LENGTH_SHORT).show();
     }
 }

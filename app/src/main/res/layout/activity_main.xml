@@ -8,7 +8,6 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
     android:id="@+id/drawableLayout">
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,9 +19,8 @@
             android:layout_height="wrap_content"
             android:background="@color/purple_500"
             app:title="Bus Timing App"
-            app:titleTextColor="@color/white"
             app:titleMarginStart="10dp"
-            />
+            app:titleTextColor="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
