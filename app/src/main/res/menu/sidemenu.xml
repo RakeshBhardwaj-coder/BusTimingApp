@@ -13,6 +13,11 @@
             android:title="Register Bus Details"
             ></item>
         <item
+            android:id="@+id/menu_addStops"
+            android:icon="@drawable/ic_add_bus"
+            android:title="Add stops"
+            ></item>
+        <item
             android:id="@+id/menu_logout"
             android:icon="@drawable/ic_add_bus"
             android:title="Logout"

@@ -48,14 +48,15 @@
                 android:layout_margin="10dp"
                 android:padding="12dp"
                 android:background="@color/white"/>
+
             <ImageButton
                 android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:background="@color/purple_500"
-                android:src="@drawable/ic_search"
                 android:onClick="Clicked"
+                android:src="@drawable/ic_search"
                 app:tint="@color/white" />
 
 

@@ -1,5 +1,7 @@
 package rakesh.app.bustimingapp.BusRegistration;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,25 +14,34 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import rakesh.app.bustimingapp.Auth.SignInPage;
 import rakesh.app.bustimingapp.MainActivity;
@@ -39,6 +50,7 @@ import rakesh.app.bustimingapp.R;
 public class BusRegistrationPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Spinner busType;
+    String busTypeString;
     List<String> busTypeList;
 
     TimePickerDialog picker;
@@ -50,11 +62,16 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+
+    EditText busNumber,busName,source,destination;
+    TextView sourceTime,destinationTime;
+    FirebaseFirestore firestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_registration_page);
 
+        //Getting busType, selecting from the spinner.
         busType = findViewById(R.id.sBusType);
 
 
@@ -66,13 +83,13 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
 
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, busTypeList);
+        ArrayAdapter<String> busTypeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, busTypeList);
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        busTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        busType.setAdapter(dataAdapter);
+        busType.setAdapter(busTypeAdapter);
         busType.setOnItemSelectedListener(this);
 
         tvSourceTime = findViewById(R.id.tvSourceTime);
@@ -87,22 +104,9 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitBuilder.setTitle("Alert")
-                        .setMessage("Do you want to register bus details...")
-                        .setCancelable(true)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        })
-                        .show();
+
+                SubmitRegistration();
+
             }
         });
 
@@ -166,7 +170,16 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
         });
 
 
+        //All Inputs Getting for Firestore
+        //busType already set.
+        busNumber = findViewById(R.id.etBusNum);
+        busName = findViewById(R.id.etBusName);
+        source = findViewById(R.id.etSource);
+        destination = findViewById(R.id.etDestination);
+        sourceTime = findViewById(R.id.tvSourceTime);
+        destinationTime = findViewById(R.id.tvDestinationTime);
 
+        firestore = FirebaseFirestore.getInstance();
 
 
     }
@@ -175,8 +188,8 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if(busTypeList.get(i) != busTypeList.get(0)){
-
-            Toast.makeText(getApplicationContext(), ""+ busTypeList.get(i),Toast.LENGTH_SHORT).show();
+            busTypeString = busTypeList.get(i);
+            Toast.makeText(getApplicationContext(), ""+ busTypeString,Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -201,10 +214,6 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
                 }, 12, 0, false);
         picker.show();
     }
-
-    public void AddTimeSource2(View view){
-
-    }
     public void AddTimeDestination(View view){
         final Calendar cldr = Calendar.getInstance();
         // time picker dialog
@@ -219,6 +228,99 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
                     }
                 }, 12, 0, false);
         picker.show();
+    }
+
+    //Sending Data to the firestore...
+
+    public void SubmitRegistration(){
+        String busTypeStr,busNumberStr,busNameStr,sourceStr,destinationStr;
+        String sourceTimeStr,destinationTimeStr;
+
+        busNumberStr =  busNumber.getText().toString();
+        busNameStr = busName.getText().toString();
+
+        if(busTypeString!=null){
+            busTypeStr = busTypeString;
+        }else {
+            busTypeStr = "Other Type";
+            Toast.makeText(getApplicationContext(), "bus type is empty!!!",Toast.LENGTH_SHORT).show();
+        }
+        sourceStr = source.getText().toString();
+        destinationStr = destination.getText().toString();
+        sourceTimeStr = sourceTime.getText().toString();
+        destinationTimeStr = destinationTime.getText().toString();
+
+        if(TextUtils.isEmpty(busNumberStr)){
+            busNumber.setError("Bus Type cannot be empty");
+            busNumber.requestFocus();
+        }
+        else if(TextUtils.isEmpty(busNameStr)){
+            busName.setError("Bus Name cannot be empty");
+            busName.requestFocus();
+        }else if(TextUtils.isEmpty(sourceStr)){
+            source.setError("Source cannot be empty");
+            source.requestFocus();
+        }else if(TextUtils.isEmpty(destinationStr)){
+            destination.setError("Bus Name cannot be empty");
+            destination.requestFocus();
+        }else if(TextUtils.isEmpty(sourceTimeStr)){
+            sourceTime.setError("Bus Name cannot be empty");
+            sourceTime.requestFocus();
+        }else if(TextUtils.isEmpty(destinationTimeStr)){
+            destinationTime.setError("Bus Name cannot be empty");
+            destinationTime.requestFocus();
+        }
+        else {
+
+            submitBuilder.setTitle("Alert")
+                    .setMessage("Do you want to register bus details...")
+                    .setCancelable(true)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            Toast.makeText(getApplicationContext(), "a"+currentUserId, Toast.LENGTH_SHORT).show();
+
+                            DocumentReference documentReference = firestore.collection("Buses").document(currentUserId) ;
+                            Map<String,Object> user = new HashMap<>();
+                            user.put("Bus Type",busTypeStr);
+                            user.put("Bus Number",busNumberStr);
+                            user.put("Bus Name",busNameStr);
+                            user.put("Source",sourceStr);
+                            user.put("Destination",destinationStr);
+                            user.put("Source Time",sourceTimeStr);
+                            user.put("Destination Time",destinationTimeStr);
+
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d(TAG,"Bus Details are Registered of "+currentUserId);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG,"Error : " + e.toString());
+
+                                }
+                            });
+
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    })
+                    .show();
+
+
+
+
+        }
+
     }
 
     private void HomePage(){

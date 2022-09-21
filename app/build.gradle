@@ -40,4 +40,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation platform('com.google.firebase:firebase-bom:30.4.1')
     implementation 'com.google.firebase:firebase-analytics'
+
+    // For resize text
+    implementation 'com.intuit.ssp:ssp-android:1.1.0'
+    //For resize view
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+
 }

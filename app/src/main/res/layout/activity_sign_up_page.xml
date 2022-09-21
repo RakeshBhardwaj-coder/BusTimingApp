@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Auth.SignInPage"
+    tools:context=".Auth.SignUpPage"
     >
 
 
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/purple_500"
-        app:title="SignIn"
+        app:title="SignUp"
         app:titleTextColor="@color/white"
         app:titleMarginStart="10dp"
         />
@@ -32,7 +32,18 @@
             android:layout_centerVertical="true"
             android:orientation="vertical"
             android:focusableInTouchMode="true"
+
             >
+
+            <EditText
+                android:id="@+id/etFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="Full Name"
+                android:padding="5dp"
+                android:textSize="@dimen/_20ssp" />
 
             <EditText
                 android:id="@+id/etEmail"
@@ -65,11 +76,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:onClick="SignUpPage"
+                    android:layout_marginRight="-1dp"
                     android:padding="10dp"
-                    android:text="Don't have accout? SignUp"
+                    android:text="already have accout? SignIn"
                     android:textColor="@color/teal_700"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textSize="@dimen/_15ssp"
+                    android:onClick="SignInPage"
+                    />
             </RelativeLayout>
 
 
@@ -78,8 +91,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                android:onClick="LoginBtn"
-                android:text="login"
+                android:onClick="SignUpBtn"
+                android:text="Signup"
                 android:textSize="@dimen/_15ssp" />
 
 

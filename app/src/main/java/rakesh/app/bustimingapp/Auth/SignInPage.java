@@ -1,11 +1,14 @@
 package rakesh.app.bustimingapp.Auth;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,15 +44,9 @@ public class SignInPage extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if(currentUser == null){
-            startActivity(new Intent(getApplicationContext(), SignInPage.class));
-
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-
-        }else {
+        if(currentUser != null){
             startActivity(new Intent(getApplicationContext(), BusRegistrationPage.class));
         }
-//        mAuth.signOut(); //for signOut
     }
 
     public void LoginBtn(View view){
@@ -58,10 +55,11 @@ public class SignInPage extends AppCompatActivity {
     public void CancelBtn(View view){
 
     }
-//    public void SignUpPage(View view){
-//        Intent i = new Intent(getApplicationContext(),SignUp.class);
-//        startActivity(i);
-//    }
+
+    public void SignUpPage(View view){
+        Intent i = new Intent(getApplicationContext(), SignUpPage.class);
+        startActivity(i);
+    }
 
     public void LoginUser(){
         String emailStr = etEmail.getText().toString();
@@ -88,4 +86,6 @@ public class SignInPage extends AppCompatActivity {
             });
         }
     }
+
+
 }

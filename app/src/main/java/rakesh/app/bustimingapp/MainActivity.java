@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     EditText etStoppage, etDestination;
 
-    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.sideBar);
         toolbar = findViewById(R.id.toolBar);
 
-        mAuth = FirebaseAuth.getInstance();
 
         setSupportActionBar(toolbar);
 
@@ -64,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_logout:
-                        mAuth.signOut();
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
