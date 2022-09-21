@@ -73,8 +73,8 @@ public class SignUpPage extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getApplicationContext(), "Registration Successfully", Toast.LENGTH_SHORT).show();
-                        BusOwnerDetails();
                         startActivity(new Intent(getApplicationContext(), SignInPage.class));
+                        BusOwnerDetails();
 
                     }else {
                         Toast.makeText(getApplicationContext(), "Registration Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -94,7 +94,7 @@ public class SignUpPage extends AppCompatActivity {
 
         String currentUserId = mAuth.getCurrentUser().getUid();
 
-        DocumentReference documentReference = firestore.collection("BusOwner").document(currentUserId);
+        DocumentReference documentReference = firestore.collection("BusOwners").document(currentUserId);
         Map<String, Object> busOwnerDetails = new HashMap<>();
         busOwnerDetails.put("Full Name",fullNameStr);
         busOwnerDetails.put("Email", emailStr);
@@ -110,9 +110,6 @@ public class SignUpPage extends AppCompatActivity {
                 Log.d(TAG,"Error : " + e.toString());
             }
         });
-
         finish();
-
-
     }
 }

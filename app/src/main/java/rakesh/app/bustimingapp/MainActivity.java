@@ -50,13 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.menu_home:
-                        startActivity(new Intent(MainActivity.this, BusRegistrationPage.class));
-//                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
-//                        drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
                     case R.id.menu_registerBusDetails:
-                        SignInPage();
+                        startActivity(new Intent(getApplicationContext(),SignInPage.class));
                         drawerLayout.closeDrawer(GravityCompat.START);
 
                         break;

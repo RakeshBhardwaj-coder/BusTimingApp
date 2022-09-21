@@ -44,6 +44,7 @@ import java.util.List;
 import java.util.Map;
 
 import rakesh.app.bustimingapp.Auth.SignInPage;
+import rakesh.app.bustimingapp.BusModel;
 import rakesh.app.bustimingapp.MainActivity;
 import rakesh.app.bustimingapp.R;
 
@@ -150,17 +151,20 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
 
                 switch (item.getItemId()){
                     case R.id.menu_home:
-                        HomePage();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
                     case R.id.menu_registerBusDetails:
+                        startActivity(new Intent(getApplicationContext(), SignInPage.class));
                         drawerLayout.closeDrawer(GravityCompat.START);
 
                         break;
 
                     case R.id.menu_logout:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
@@ -282,17 +286,22 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
                             String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             Toast.makeText(getApplicationContext(), "a"+currentUserId, Toast.LENGTH_SHORT).show();
 
-                            DocumentReference documentReference = firestore.collection("Buses").document(currentUserId) ;
-                            Map<String,Object> user = new HashMap<>();
-                            user.put("Bus Type",busTypeStr);
-                            user.put("Bus Number",busNumberStr);
-                            user.put("Bus Name",busNameStr);
-                            user.put("Source",sourceStr);
-                            user.put("Destination",destinationStr);
-                            user.put("Source Time",sourceTimeStr);
-                            user.put("Destination Time",destinationTimeStr);
+                            //Using the model to set the data to firestore
+                            BusModel busModel = new BusModel(busNumberStr,busTypeStr,busNameStr,sourceStr,destinationStr,sourceTimeStr,destinationTimeStr);
 
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            DocumentReference documentReference = firestore.collection("Buses").document(currentUserId).collection("Bus Number").document(busNumberStr);
+
+//                            // This map method if you don't use any model.
+//                            Map<String,Object> user = new HashMap<>();
+//                            user.put("Bus Type",busTypeStr);
+//                            user.put("Bus Number",busNumberStr);
+//                            user.put("Bus Name",busNameStr);
+//                            user.put("Source",sourceStr);
+//                            user.put("Destination",destinationStr);
+//                            user.put("Source Time",sourceTimeStr);
+//                            user.put("Destination Time",destinationTimeStr);
+
+                            documentReference.set(busModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Log.d(TAG,"Bus Details are Registered of "+currentUserId);
@@ -324,7 +333,6 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
     }
 
     private void HomePage(){
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        this.startActivity(i);
+
     }
 }

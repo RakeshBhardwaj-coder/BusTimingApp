@@ -48,19 +48,16 @@ public class SignInPage extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), BusRegistrationPage.class));
         }
     }
-
     public void LoginBtn(View view){
         LoginUser();
     }
     public void CancelBtn(View view){
 
     }
-
     public void SignUpPage(View view){
         Intent i = new Intent(getApplicationContext(), SignUpPage.class);
         startActivity(i);
     }
-
     public void LoginUser(){
         String emailStr = etEmail.getText().toString();
         String passwordStr = etPassword.getText().toString();
