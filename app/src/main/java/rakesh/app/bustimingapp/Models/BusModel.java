@@ -1,8 +1,10 @@
-package rakesh.app.bustimingapp;
+package rakesh.app.bustimingapp.Models;
 
 public class BusModel {
     private String busNumber,busType,busName,busSource,busDestination,busSourceTime,busDestinationTime;
+    public BusModel(){
 
+    }
     public BusModel(String busNumber, String busType, String busName, String busSource, String busDestination, String busSourceTime, String busDestinationTime) {
         this.busNumber = busNumber;
         this.busType = busType;

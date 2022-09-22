@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import rakesh.app.bustimingapp.BusRegistration.BusRegistrationPage;
+import rakesh.app.bustimingapp.MainActivity;
 import rakesh.app.bustimingapp.R;
 
 public class SignInPage extends AppCompatActivity {
@@ -74,7 +75,7 @@ public class SignInPage extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Toast.makeText(getApplicationContext(), "Loggin Successfully.", Toast.LENGTH_SHORT).show();
 
-                        startActivity(new Intent(getApplicationContext(), BusRegistrationPage.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }else {
                         Toast.makeText(getApplicationContext(), "LogIn Error " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 

@@ -8,20 +8,36 @@
             android:title="Home"
             ></item>
         <item
-            android:id="@+id/menu_registerBusDetails"
             android:icon="@drawable/ic_add_bus"
             android:title="Register Bus Details"
-            ></item>
+            >
+
+              <menu>
+                  <item
+                      android:id="@+id/menu_registerBusDetails"
+                      android:icon="@drawable/ic_add_bus"
+                      android:title="Register Bus Details"
+                      />
+                  <item
+                  android:id="@+id/menu_addStops"
+                  android:icon="@drawable/ic_add_bus"
+                  android:title="Add Stops"
+                  />
+              </menu>
+            </item>
         <item
-            android:id="@+id/menu_addStops"
-            android:icon="@drawable/ic_add_bus"
-            android:title="Add stops"
-            ></item>
-        <item
-            android:id="@+id/menu_logout"
             android:icon="@drawable/ic_add_bus"
             android:title="Logout"
-            ></item>
+            >
+            <menu>
+
+                <item
+                    android:id="@+id/menu_logout"
+                    android:icon="@drawable/ic_add_bus"
+                    android:title="Log Out"
+                    />
+            </menu>
+        </item>
     </group>
 
 </menu>

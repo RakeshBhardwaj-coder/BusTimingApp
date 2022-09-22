@@ -16,9 +16,10 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import rakesh.app.bustimingapp.Auth.SignInPage;
-import rakesh.app.bustimingapp.BusRegistration.BusRegistrationPage;
+import rakesh.app.bustimingapp.BusRegistration.AddStops;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,7 +59,16 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_registerBusDetails:
                         startActivity(new Intent(getApplicationContext(),SignInPage.class));
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
 
+                    case R.id.menu_addStops:
+                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                        if(currentUser != null){
+                            startActivity(new Intent(getApplicationContext(), AddStops.class));
+                        }else {
+                            startActivity(new Intent(getApplicationContext(),SignInPage.class));
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
                     case R.id.menu_logout:

@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -31,20 +30,18 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import rakesh.app.bustimingapp.Auth.SignInPage;
-import rakesh.app.bustimingapp.BusModel;
+import rakesh.app.bustimingapp.Models.BusModel;
 import rakesh.app.bustimingapp.MainActivity;
 import rakesh.app.bustimingapp.R;
 
@@ -159,7 +156,16 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
                     case R.id.menu_registerBusDetails:
                         startActivity(new Intent(getApplicationContext(), SignInPage.class));
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
 
+                    case R.id.menu_addStops:
+                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                        if(currentUser != null){
+                            startActivity(new Intent(getApplicationContext(), AddStops.class));
+                        }else {
+                            startActivity(new Intent(getApplicationContext(),SignInPage.class));
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
                     case R.id.menu_logout:
