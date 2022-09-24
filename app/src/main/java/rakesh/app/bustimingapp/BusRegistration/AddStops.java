@@ -162,6 +162,15 @@ public class AddStops extends AppCompatActivity {
                                     rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
                                     rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
 
+                                }else if(documentChange.getType() == DocumentChange.Type.MODIFIED) {
+                                    allBusDetailsData.clear();
+                                    List<BusModel> data = value.toObjects(BusModel.class);
+                                    allBusDetailsData.addAll(data);
+
+                                    // Set data ta recycle view
+                                    rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
+                                    rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+
                                 }
                                 if(progressDialog.isShowing()){
                                     progressDialog.dismiss();
