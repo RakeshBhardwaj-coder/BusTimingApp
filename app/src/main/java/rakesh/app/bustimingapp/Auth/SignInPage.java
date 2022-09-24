@@ -1,14 +1,11 @@
 package rakesh.app.bustimingapp.Auth;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import rakesh.app.bustimingapp.BusRegistration.BusRegistrationPage;
-import rakesh.app.bustimingapp.MainActivity;
+import rakesh.app.bustimingapp.Home.MainActivity;
 import rakesh.app.bustimingapp.R;
 
 public class SignInPage extends AppCompatActivity {

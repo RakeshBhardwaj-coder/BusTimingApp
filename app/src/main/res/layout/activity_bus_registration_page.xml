@@ -9,6 +9,7 @@
     tools:openDrawer="start"
     android:id="@+id/drawableLayoutRegiPage"
 
+
     >
 
     <RelativeLayout

@@ -10,7 +10,7 @@
     android:id="@+id/drawableLayoutAddStops"
     >
 
-    // As means Add stops
+    // 'As' means Add stops
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
 
             />
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolBarAddStops"
@@ -44,19 +44,19 @@
 
                 />
 
-        </RelativeLayout>
+        </ScrollView>
 
 
     </RelativeLayout>
 
 
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/sideBarRegiPage"-->
-<!--        app:headerLayout="@layout/header"-->
-<!--        app:menu="@menu/sidemenu"-->
-<!--        android:layout_gravity="start"-->
-<!--        ></com.google.android.material.navigation.NavigationView>-->
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/sideBarAddStopsPage"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/sidemenu"
+        android:layout_gravity="start"
+        ></com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

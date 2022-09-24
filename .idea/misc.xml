@@ -7,13 +7,15 @@
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/drawable/border_shape.xml" value="0.1975" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/drawable/ic_add_bus.xml" value="0.296" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/drawable/ic_clock.xml" value="0.2165" />
+        <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/drawable/ic_edit.xml" value="0.199" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/drawable/ic_right_arrow.xml" value="0.1975" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/drawable/ic_search.xml" value="0.179" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/drawable/rectagular_shape.xml" value="0.1975" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/layout/activity_abc.xml" value="0.35104166666666664" />
-        <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/layout/activity_add_stops.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/layout/activity_add_stops.xml" value="0.25" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/layout/activity_bus_registration_page.xml" value="0.21" />
+        <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/layout/activity_edit_bus_details.xml" value="0.30520833333333336" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/layout/activity_login_page.xml" value="0.22" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Public/Downloads/AnroidProject/BusTimingApp/app/src/main/res/layout/activity_registration_page.xml" value="0.36102564102564105" />

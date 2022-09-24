@@ -1,4 +1,4 @@
-package rakesh.app.bustimingapp;
+package rakesh.app.bustimingapp.Home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import rakesh.app.bustimingapp.Auth.SignInPage;
 import rakesh.app.bustimingapp.BusRegistration.AddStops;
+import rakesh.app.bustimingapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.OpenSidebar,R.string.CloseSidebar);
         drawerLayout.addDrawerListener(toggle);
+        toggle.getDrawerArrowDrawable().setColor(Color.WHITE);
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

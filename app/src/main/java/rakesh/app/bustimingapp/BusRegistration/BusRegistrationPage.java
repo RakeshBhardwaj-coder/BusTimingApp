@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -13,6 +14,7 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -42,7 +44,7 @@ import java.util.List;
 
 import rakesh.app.bustimingapp.Auth.SignInPage;
 import rakesh.app.bustimingapp.Models.BusModel;
-import rakesh.app.bustimingapp.MainActivity;
+import rakesh.app.bustimingapp.Home.MainActivity;
 import rakesh.app.bustimingapp.R;
 
 public class BusRegistrationPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -71,7 +73,6 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
 
         //Getting busType, selecting from the spinner.
         busType = findViewById(R.id.sBusType);
-
 
         // Spinner Drop down elements
         busTypeList= new ArrayList<String>();
@@ -118,7 +119,7 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
+                                finish();  //finish() will take you to the home screen.
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -139,9 +140,13 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.OpenSidebar,R.string.CloseSidebar);
+
+        DrawerArrowDrawable tog = toggle.getDrawerArrowDrawable();
+        tog.setColor(Color.WHITE);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Sidebar Options are clickable now
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -224,6 +229,7 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
                 }, 12, 0, false);
         picker.show();
     }
+
     public void AddTimeDestination(View view){
         final Calendar cldr = Calendar.getInstance();
         // time picker dialog
@@ -241,7 +247,6 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
     }
 
     //Sending Data to the firestore...
-
     public void SubmitRegistration(){
         String busTypeStr,busNumberStr,busNameStr,sourceStr,destinationStr;
         String sourceTimeStr,destinationTimeStr;
@@ -338,7 +343,5 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
 
     }
 
-    private void HomePage(){
 
-    }
 }
