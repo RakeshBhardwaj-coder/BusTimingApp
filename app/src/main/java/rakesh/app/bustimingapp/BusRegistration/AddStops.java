@@ -143,54 +143,71 @@ public class AddStops extends AppCompatActivity {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if(error != null){
-//                            if(progressDialog.isShowing()){
-//                                progressDialog.dismiss();
-//                            }
+                            if(progressDialog.isShowing()){
+                                progressDialog.dismiss();
+                            }
                             Log.e("Firestore error",error.getMessage());
                             return;
 
                         }else{
-                            // We are finding out the value as object in the form of bus model class.
 
-                            for(DocumentChange documentChange : value.getDocumentChanges()){
+                            if(!value.isEmpty()){
+                                // We are finding out the value as object in the form of bus model class.
 
-                                if(documentChange.getType() == DocumentChange.Type.ADDED){
-                                    List<BusModel> data = value.toObjects(BusModel.class);
-                                    allBusDetailsData.addAll(data);
+                                for(DocumentChange documentChange : value.getDocumentChanges()){
 
-                                    // Set data ta recycle view
-                                    rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
-                                    rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+                                    if(documentChange.getType() == DocumentChange.Type.ADDED){
+                                        allBusDetailsData.clear();
+                                        List<BusModel> data = value.toObjects(BusModel.class);
+                                        allBusDetailsData.addAll(data);
 
-                                }else if(documentChange.getType() == DocumentChange.Type.MODIFIED) {
-                                    allBusDetailsData.clear();
-                                    List<BusModel> data = value.toObjects(BusModel.class);
-                                    allBusDetailsData.addAll(data);
+                                        // Set data ta recycle view
+                                        rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
+                                        rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
 
-                                    // Set data ta recycle view
-                                    rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
-                                    rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+                                    }else if(documentChange.getType() == DocumentChange.Type.MODIFIED) {
+                                        allBusDetailsData.clear();
+                                        List<BusModel> data = value.toObjects(BusModel.class);
+                                        allBusDetailsData.addAll(data);
+
+                                        // Set data ta recycle view
+                                        rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
+                                        rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+
+                                    }else if(documentChange.getType() == DocumentChange.Type.REMOVED){
+                                        allBusDetailsData.clear();
+                                        List<BusModel> data = value.toObjects(BusModel.class);
+                                        allBusDetailsData.addAll(data);
+
+                                        // Set data ta recycle view
+                                        rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
+                                        rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+
+                                    }
+                                    if(progressDialog.isShowing()){
+                                        progressDialog.dismiss();
+                                    }
 
                                 }
+
+                            }else {
+                                allBusDetailsData.clear();
+                                List<BusModel> data = value.toObjects(BusModel.class);
+                                allBusDetailsData.addAll(data);
+
+                                // Set data ta recycle view
+                                rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
+                                rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+
+                                Toast.makeText(getApplicationContext(),"First Register the Bus Details.",Toast.LENGTH_SHORT).show();
                                 if(progressDialog.isShowing()){
                                     progressDialog.dismiss();
                                 }
-
                             }
-
-//                            for(DocumentChange documentChange : value.getDocumentChanges()){
 //
-//                                allBusDetailsData.notifyAll();
-
-//                            }
                         }
                     }
                 });
-//        allBusDetailsData.clear();
     }
 
-//    public void DeleteBus(){
-//        firestore.collection("Buses").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Bus Number")
-//
-//    }
 }
