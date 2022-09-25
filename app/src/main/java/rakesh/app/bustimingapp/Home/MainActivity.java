@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import rakesh.app.bustimingapp.Auth.SignInPage;
-import rakesh.app.bustimingapp.BusRegistration.AddStops;
+import rakesh.app.bustimingapp.BusRegistration.AllBuseDetails;
 import rakesh.app.bustimingapp.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.OpenSidebar,R.string.CloseSidebar);
         drawerLayout.addDrawerListener(toggle);
@@ -64,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
-                    case R.id.menu_addStops:
+                    case R.id.menu_all_bus_details:
                         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                         if(currentUser != null){
-                            startActivity(new Intent(getApplicationContext(), AddStops.class));
+                            startActivity(new Intent(getApplicationContext(), AllBuseDetails.class));
                         }else {
                             startActivity(new Intent(getApplicationContext(),SignInPage.class));
                         }

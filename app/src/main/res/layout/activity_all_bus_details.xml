@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BusRegistration.AddStops"
+    tools:context=".BusRegistration.AllBuseDetails"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
     android:id="@+id/drawableLayoutAddStops"
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/purple_500"
-            app:title="Add Stops"
+            app:title="All Bus Details"
             app:titleMarginStart="10dp"
             app:titleTextColor="@color/white"
 

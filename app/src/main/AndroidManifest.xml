@@ -21,13 +21,17 @@
             android:name=".Stops.EditBusDetails"
             android:exported="false" />
         <activity
-            android:name=".BusRegistration.AddStops"
+            android:name=".BusRegistration.AllBuseDetails"
             android:exported="false" />
         <activity
             android:name=".Auth.SignUpPage"
+            android:theme="@style/MyActionBar"
+            android:parentActivityName=".Home.MainActivity"
             android:exported="false" />
         <activity
             android:name=".Auth.SignInPage"
+            android:parentActivityName=".Home.MainActivity"
+            android:theme="@style/MyActionBar"
             android:exported="false" />
         <activity
             android:name=".BusRegistration.BusRegistrationPage"

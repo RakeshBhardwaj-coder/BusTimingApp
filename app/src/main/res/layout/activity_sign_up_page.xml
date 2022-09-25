@@ -10,13 +10,17 @@
 
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/signUpToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="?attr/colorPrimary"
         app:title="SignUp"
         app:titleTextColor="@color/white"
         app:titleMarginStart="10dp"
         />
+
 
 
     <RelativeLayout
@@ -77,12 +81,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="-1dp"
+                    android:onClick="SignInPage"
                     android:padding="10dp"
                     android:text="already have accout? SignIn"
                     android:textColor="@color/teal_700"
-                    android:textSize="@dimen/_15ssp"
-                    android:onClick="SignInPage"
-                    />
+                    android:textSize="@dimen/_15ssp" />
             </RelativeLayout>
 
 

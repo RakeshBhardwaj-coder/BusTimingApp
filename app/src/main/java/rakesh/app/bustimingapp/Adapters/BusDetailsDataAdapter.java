@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,28 +25,28 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 import rakesh.app.bustimingapp.Models.BusModel;
-import rakesh.app.bustimingapp.BusRegistration.AddStops;
+import rakesh.app.bustimingapp.BusRegistration.AllBuseDetails;
 import rakesh.app.bustimingapp.R;
 import rakesh.app.bustimingapp.Stops.EditBusDetails;
 
 public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAdapter.BusDetailsDataHolder> {
 
-    AddStops addStops;
+    AllBuseDetails allBuseDetails;
     ArrayList<BusModel> allBusDetailsData;
 
     public BusDetailsDataAdapter(){
 
     }
 
-    public BusDetailsDataAdapter(AddStops addStops, ArrayList<BusModel> allBusDetailsData) {
+    public BusDetailsDataAdapter(AllBuseDetails allBuseDetails, ArrayList<BusModel> allBusDetailsData) {
         this.allBusDetailsData = allBusDetailsData;
-        this.addStops = addStops;
+        this.allBuseDetails = allBuseDetails;
     }
 
     @NonNull
     @Override
     public BusDetailsDataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new BusDetailsDataHolder(LayoutInflater.from(addStops).inflate(R.layout.bus_details_data_show,parent,false));
+        return new BusDetailsDataHolder(LayoutInflater.from(allBuseDetails).inflate(R.layout.bus_details_data_show,parent,false));
     }
 
     @Override
@@ -64,7 +63,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
         holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(addStops.getApplicationContext(), "Edit",Toast.LENGTH_SHORT).show();
+                Toast.makeText(allBuseDetails.getApplicationContext(), "Edit",Toast.LENGTH_SHORT).show();
                 holder.editBtnBuilder.setTitle("Alert")
                         .setMessage("Do you want to Edit.")
                         .setCancelable(true)
@@ -72,7 +71,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // passing the BusNumber key for edit the details to edit bus details.
-                                addStops.startActivity(new Intent(addStops, EditBusDetails.class).putExtra("BusNumberKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()));
+                                allBuseDetails.startActivity(new Intent(allBuseDetails, EditBusDetails.class).putExtra("BusNumberKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()));
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -100,7 +99,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if(task.isSuccessful()){
-                                                            Toast.makeText(addStops.getApplicationContext(), "Deleted",Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(allBuseDetails.getApplicationContext(), "Deleted",Toast.LENGTH_SHORT).show();
                                                         }
                                                     }
                                                 }).addOnFailureListener(new OnFailureListener() {
@@ -111,7 +110,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                                         });
 
 
-                                Toast.makeText(addStops.getApplicationContext(), "Delete",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(allBuseDetails.getApplicationContext(), "Delete",Toast.LENGTH_SHORT).show();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -149,8 +148,8 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
 
             editBtn = itemView.findViewById(R.id.ivBddsEdit);
             deleteBtn = itemView.findViewById(R.id.ivBddsDelete);
-            editBtnBuilder = new AlertDialog.Builder(addStops); // 'addStops' is working as this key
-            deleteBtnBuilder = new AlertDialog.Builder(addStops); // 'addStops' is working as this key
+            editBtnBuilder = new AlertDialog.Builder(allBuseDetails); // 'addStops' is working as this key
+            deleteBtnBuilder = new AlertDialog.Builder(allBuseDetails); // 'addStops' is working as this key
         }
     }
 

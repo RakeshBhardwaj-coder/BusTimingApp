@@ -139,6 +139,7 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
 
         setSupportActionBar(toolbar);
 
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.OpenSidebar,R.string.CloseSidebar);
 
         DrawerArrowDrawable tog = toggle.getDrawerArrowDrawable();
@@ -163,10 +164,10 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
-                    case R.id.menu_addStops:
+                    case R.id.menu_all_bus_details:
                         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                         if(currentUser != null){
-                            startActivity(new Intent(getApplicationContext(), AddStops.class));
+                            startActivity(new Intent(getApplicationContext(), AllBuseDetails.class));
                         }else {
                             startActivity(new Intent(getApplicationContext(),SignInPage.class));
                         }
@@ -316,6 +317,7 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Log.d(TAG,"Bus Details are Registered of "+currentUserId);
+                                    startActivity(new Intent(getApplicationContext(), AllBuseDetails.class));
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override

@@ -1,13 +1,19 @@
 package rakesh.app.bustimingapp.Auth;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +31,7 @@ public class SignInPage extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText etEmail;
     EditText etPassword;
+    Toolbar signInToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,17 @@ public class SignInPage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
+
+        // get the white home back icon
+        signInToolbar = findViewById(R.id.signInToolBar);
+        setSupportActionBar(signInToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
     }
+
 
     @Override
     protected void onStart() {

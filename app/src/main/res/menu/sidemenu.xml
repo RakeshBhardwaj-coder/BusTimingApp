@@ -19,9 +19,9 @@
                       android:title="Register Bus Details"
                       />
                   <item
-                  android:id="@+id/menu_addStops"
+                  android:id="@+id/menu_all_bus_details"
                   android:icon="@drawable/ic_add_bus"
-                  android:title="Add Stops"
+                  android:title="All Bus Details"
                   />
               </menu>
             </item>

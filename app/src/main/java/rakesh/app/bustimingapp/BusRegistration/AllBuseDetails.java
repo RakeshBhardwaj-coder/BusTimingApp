@@ -18,7 +18,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -40,7 +39,7 @@ import rakesh.app.bustimingapp.Home.MainActivity;
 import rakesh.app.bustimingapp.Models.BusModel;
 import rakesh.app.bustimingapp.R;
 
-public class AddStops extends AppCompatActivity {
+public class AllBuseDetails extends AppCompatActivity {
 
     RecyclerView rvBusDetails;
     FirebaseFirestore firestore;
@@ -61,7 +60,7 @@ public class AddStops extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_stops);
+        setContentView(R.layout.activity_all_bus_details);
 
         firestore = FirebaseFirestore.getInstance();
         rvBusDetails = findViewById(R.id.rvAsBusDetails);
@@ -107,10 +106,10 @@ public class AddStops extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
-                    case R.id.menu_addStops:
+                    case R.id.menu_all_bus_details:
                         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                         if(currentUser != null){
-                            startActivity(new Intent(getApplicationContext(), AddStops.class));
+                            startActivity(new Intent(getApplicationContext(), AllBuseDetails.class));
                         }else {
                             startActivity(new Intent(getApplicationContext(),SignInPage.class));
                         }
@@ -162,8 +161,8 @@ public class AddStops extends AppCompatActivity {
                                         allBusDetailsData.addAll(data);
 
                                         // Set data ta recycle view
-                                        rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
-                                        rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+                                        rvBusDetails.setLayoutManager(new LinearLayoutManager(AllBuseDetails.this));
+                                        rvBusDetails.setAdapter(new BusDetailsDataAdapter(AllBuseDetails.this,allBusDetailsData));
 
                                     }else if(documentChange.getType() == DocumentChange.Type.MODIFIED) {
                                         allBusDetailsData.clear();
@@ -171,8 +170,8 @@ public class AddStops extends AppCompatActivity {
                                         allBusDetailsData.addAll(data);
 
                                         // Set data ta recycle view
-                                        rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
-                                        rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+                                        rvBusDetails.setLayoutManager(new LinearLayoutManager(AllBuseDetails.this));
+                                        rvBusDetails.setAdapter(new BusDetailsDataAdapter(AllBuseDetails.this,allBusDetailsData));
 
                                     }else if(documentChange.getType() == DocumentChange.Type.REMOVED){
                                         allBusDetailsData.clear();
@@ -180,8 +179,8 @@ public class AddStops extends AppCompatActivity {
                                         allBusDetailsData.addAll(data);
 
                                         // Set data ta recycle view
-                                        rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
-                                        rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+                                        rvBusDetails.setLayoutManager(new LinearLayoutManager(AllBuseDetails.this));
+                                        rvBusDetails.setAdapter(new BusDetailsDataAdapter(AllBuseDetails.this,allBusDetailsData));
 
                                     }
                                     if(progressDialog.isShowing()){
@@ -196,8 +195,8 @@ public class AddStops extends AppCompatActivity {
                                 allBusDetailsData.addAll(data);
 
                                 // Set data ta recycle view
-                                rvBusDetails.setLayoutManager(new LinearLayoutManager(AddStops.this));
-                                rvBusDetails.setAdapter(new BusDetailsDataAdapter(AddStops.this,allBusDetailsData));
+                                rvBusDetails.setLayoutManager(new LinearLayoutManager(AllBuseDetails.this));
+                                rvBusDetails.setAdapter(new BusDetailsDataAdapter(AllBuseDetails.this,allBusDetailsData));
 
                                 Toast.makeText(getApplicationContext(),"First Register the Bus Details.",Toast.LENGTH_SHORT).show();
                                 if(progressDialog.isShowing()){

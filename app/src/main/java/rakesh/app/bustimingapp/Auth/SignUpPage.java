@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ public class SignUpPage extends AppCompatActivity {
     EditText etFullName, etEmail, etPassword;
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
+
+    Toolbar signUpToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,11 @@ public class SignUpPage extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+
+        // get the white home back icon
+        signUpToolbar = findViewById(R.id.signUpToolBar);
+        setSupportActionBar(signUpToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void SignInPage(View view){
