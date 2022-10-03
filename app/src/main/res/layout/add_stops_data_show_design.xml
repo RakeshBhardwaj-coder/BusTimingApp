@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_arrow"
+        android:backgroundTint="@color/purple_500"
+        android:text="Stop 0"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15ssp" />
+    <EditText
+        android:id="@+id/etBusStopName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@color/white"
+        android:hint="Bus Stop Name"
+        android:textAlignment="textStart"
+        android:padding="10dp"
+        />
+    <EditText
+        android:id="@+id/etBusReachTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@color/white"
+        android:hint="Bus Reach Time"
+        android:textAlignment="textStart"
+        android:padding="10dp"
+        />
+    <EditText
+        android:id="@+id/etBusExitTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@color/white"
+        android:hint="Bus Exit Time"
+        android:textAlignment="textStart"
+        android:padding="10dp"
+        />
+    <EditText
+        android:id="@+id/etBusWaitingTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@color/white"
+        android:hint="Bus Waiting Time"
+        android:textAlignment="textStart"
+        android:padding="10dp"
+        />
+</LinearLayout>

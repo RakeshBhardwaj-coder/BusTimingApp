@@ -68,9 +68,9 @@ public class AllBuseDetails extends AppCompatActivity {
         GetBusDetailsData(); //getting all bus details from firebase
 
         // this is for the Side Navigation Bar
-        drawerLayout = findViewById(R.id.drawableLayoutAddStops);
-        navigationView = findViewById(R.id.sideBarAddStopsPage);
-        toolbar = findViewById(R.id.toolBarAddStops);
+        drawerLayout = findViewById(R.id.drawableLayoutAllBusDetails);
+        navigationView = findViewById(R.id.sideBarAllBusDetails);
+        toolbar = findViewById(R.id.toolBarAllBusDetails);
 
         setSupportActionBar(toolbar);
 

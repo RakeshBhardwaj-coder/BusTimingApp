@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddStops.AddStopsPage"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    android:id="@+id/drawableLayoutAddBusStopsPage"
+    >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBarAddStopsPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_500"
+            app:title="Add Bus Stops"
+            app:titleMarginStart="10dp"
+            app:titleTextColor="@color/white"
+
+            />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/llBusDetails"
+                android:layout_below="@+id/toolBarAddStopsPage"
+                android:paddingLeft="@dimen/_10ssp"
+                android:paddingTop="@dimen/_10ssp"
+                >
+
+                // ASP means add stops page
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/tvASPBusNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_4sdp"
+                        android:text="Bus Number"
+                        android:textSize="@dimen/_18ssp"
+                        android:layout_weight="3"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:id="@+id/tvASPBusName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bus Name"
+                        android:textSize="@dimen/_18ssp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvASPBusType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectagular_shape"
+                        android:padding="@dimen/_2sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:text="Bus Type"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_15ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tvASPSource"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Source"
+                        android:textSize="@dimen/_18ssp"
+
+                        />
+
+                    <ImageView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_right_arrow"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvASPDestination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Destination"
+                        android:textSize="@dimen/_18ssp"
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_100sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tvASPSourceTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12 : 00 AM"
+                        android:textSize="@dimen/_14sdp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:text="To"
+                        android:textSize="@dimen/_14sdp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvASPDestinationTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12 : 00 PM"
+                        android:textSize="@dimen/_14sdp"
+
+                        />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/llBusDetails"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:id="@+id/llAddStopsBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectagular_shape"
+                        android:backgroundTint="@color/gray"
+                        android:gravity="center"
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_2sdp"
+                            android:src="@drawable/ic_add_hollow"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_2sdp"
+                            android:text="Add Stops"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/llBusDetails"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+        </ScrollView>
+    </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/sideBarAddBusStops"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/sidemenu"
+        android:layout_gravity="start"
+        ></com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

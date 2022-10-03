@@ -7,7 +7,7 @@
     tools:context=".BusRegistration.AllBuseDetails"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    android:id="@+id/drawableLayoutAddStops"
+    android:id="@+id/drawableLayoutAllBusDetails"
     >
 
     // 'As' means Add stops
@@ -19,7 +19,7 @@
         >
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolBarAddStops"
+            android:id="@+id/toolBarAllBusDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/purple_500"
@@ -27,13 +27,12 @@
             app:titleMarginStart="10dp"
             app:titleTextColor="@color/white"
 
-
             />
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/toolBarAddStops"
+            android:layout_below="@+id/toolBarAllBusDetails"
             android:layout_marginTop="10dp"
             >
 
@@ -41,7 +40,6 @@
                 android:id="@+id/rvAsBusDetails"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 />
 
         </ScrollView>
@@ -53,7 +51,7 @@
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/sideBarAddStopsPage"
+        android:id="@+id/sideBarAllBusDetails"
         app:headerLayout="@layout/header"
         app:menu="@menu/sidemenu"
         android:layout_gravity="start"

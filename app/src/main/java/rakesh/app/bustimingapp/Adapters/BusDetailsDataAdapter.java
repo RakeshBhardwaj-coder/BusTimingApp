@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,10 +25,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
+import rakesh.app.bustimingapp.AddStops.AddStopsPage;
 import rakesh.app.bustimingapp.Models.BusModel;
 import rakesh.app.bustimingapp.BusRegistration.AllBuseDetails;
 import rakesh.app.bustimingapp.R;
-import rakesh.app.bustimingapp.Stops.EditBusDetails;
+import rakesh.app.bustimingapp.BusRegistration.EditBusDetails;
 
 public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAdapter.BusDetailsDataHolder> {
 
@@ -122,6 +124,15 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                         .show();
             }
         });
+
+        // when click on every Add stops button then open the add stops page
+        holder.addStopsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                allBuseDetails.startActivity(new Intent(allBuseDetails, AddStopsPage.class).putExtra("BusNumberKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()));
+            }
+        });
     }
 
     @Override
@@ -135,6 +146,8 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
         // Edit and Delete Button we access here
         ImageView editBtn,deleteBtn;
         AlertDialog.Builder editBtnBuilder,deleteBtnBuilder;
+
+        Button addStopsBtn;
 
         public BusDetailsDataHolder(@NonNull View itemView) {
             super(itemView);
@@ -150,6 +163,9 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
             deleteBtn = itemView.findViewById(R.id.ivBddsDelete);
             editBtnBuilder = new AlertDialog.Builder(allBuseDetails); // 'addStops' is working as this key
             deleteBtnBuilder = new AlertDialog.Builder(allBuseDetails); // 'addStops' is working as this key
+
+            addStopsBtn = itemView.findViewById(R.id.btnBddsAddStops);
+
         }
     }
 
