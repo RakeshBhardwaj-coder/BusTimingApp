@@ -126,12 +126,6 @@ public class AllBuseDetails extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
-
-
-
     }
 
     public  void GetBusDetailsData(){

@@ -4,8 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<!--    asdsd means add stops data show design -->
 
     <TextView
+        android:id="@+id/asdsdStopIndex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_arrow"
@@ -15,7 +17,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_15ssp" />
     <EditText
-        android:id="@+id/etBusStopName"
+        android:id="@+id/asdsdBusStopName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
@@ -25,7 +27,7 @@
         android:padding="10dp"
         />
     <EditText
-        android:id="@+id/etBusReachTime"
+        android:id="@+id/asdsdBusReachTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
@@ -35,7 +37,7 @@
         android:padding="10dp"
         />
     <EditText
-        android:id="@+id/etBusExitTime"
+        android:id="@+id/asdsdBusExitTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
@@ -45,7 +47,7 @@
         android:padding="10dp"
         />
     <EditText
-        android:id="@+id/etBusWaitingTime"
+        android:id="@+id/asdsdBusWaitingTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"

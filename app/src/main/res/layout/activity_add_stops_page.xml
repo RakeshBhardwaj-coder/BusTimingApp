@@ -22,6 +22,8 @@
             app:title="Add Bus Stops"
             app:titleMarginStart="10dp"
             app:titleTextColor="@color/white"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
             />
 
@@ -195,13 +197,5 @@
                     android:layout_height="match_parent"/>
         </ScrollView>
     </RelativeLayout>
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/sideBarAddBusStops"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/sidemenu"
-        android:layout_gravity="start"
-        ></com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

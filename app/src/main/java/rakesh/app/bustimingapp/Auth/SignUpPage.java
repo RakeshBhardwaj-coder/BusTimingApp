@@ -51,6 +51,7 @@ public class SignUpPage extends AppCompatActivity {
         signUpToolbar = findViewById(R.id.signUpToolBar);
         setSupportActionBar(signUpToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // parent activity name = Main Activity in android menifest file will send to home
     }
 
     public void SignInPage(View view){

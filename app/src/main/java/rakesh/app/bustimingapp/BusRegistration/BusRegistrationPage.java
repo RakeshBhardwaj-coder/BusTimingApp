@@ -306,13 +306,7 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
 //                            // This map method if you don't use any model.
 //                            Map<String,Object> user = new HashMap<>();
 //                            user.put("Bus Type",busTypeStr);
-//                            user.put("Bus Number",busNumberStr);
-//                            user.put("Bus Name",busNameStr);
-//                            user.put("Source",sourceStr);
-//                            user.put("Destination",destinationStr);
-//                            user.put("Source Time",sourceTimeStr);
-//                            user.put("Destination Time",destinationTimeStr);
-
+//
                             documentReference.set(busModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {

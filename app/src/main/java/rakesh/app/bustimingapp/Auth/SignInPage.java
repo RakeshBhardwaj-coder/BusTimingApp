@@ -50,6 +50,7 @@ public class SignInPage extends AppCompatActivity {
 
 
 
+
     }
 
 
@@ -66,9 +67,7 @@ public class SignInPage extends AppCompatActivity {
     public void LoginBtn(View view){
         LoginUser();
     }
-    public void CancelBtn(View view){
 
-    }
     public void SignUpPage(View view){
         Intent i = new Intent(getApplicationContext(), SignUpPage.class);
         startActivity(i);
