@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/_5sdp"
+    android:background="@drawable/rectagular_shape"
+    android:layout_margin="@dimen/_10sdp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:text="Stop"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_18ssp"
+                    />
+                <TextView
+                    android:id="@+id/asdsBusStopIndex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_18ssp"
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivBddsEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                app:tint="@color/white"
+                android:padding="@dimen/_3sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                />
+            <ImageView
+                android:id="@+id/ivBddsDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@color/white"
+                android:src="@drawable/ic_delete"
+                android:padding="@dimen/_3sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/asdsBusStopName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stop Name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                android:layout_weight="3"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_100sdp"
+            >
+
+            <TextView
+                android:id="@+id/asdsBusReachTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="11 : 55 AM"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="To"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+
+                />
+
+            <TextView
+                android:id="@+id/asdsBusExitTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="12 : 05 PM"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/asdsBusWaitingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="10 min of waiting"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

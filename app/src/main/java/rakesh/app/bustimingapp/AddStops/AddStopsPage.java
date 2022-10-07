@@ -11,7 +11,11 @@ import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -35,12 +39,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import rakesh.app.bustimingapp.Adapters.BusDetailsDataAdapter;
+import rakesh.app.bustimingapp.Adapters.StopsDetailsDataAdapter;
 import rakesh.app.bustimingapp.Auth.SignInPage;
 import rakesh.app.bustimingapp.BusRegistration.AllBuseDetails;
 import rakesh.app.bustimingapp.Home.MainActivity;
@@ -61,11 +72,15 @@ public class AddStopsPage extends AppCompatActivity {
 
     static int busStopIndex;
     AlertDialog.Builder addStopsBtnBuilder;
-
+    ProgressDialog progressDialog;
     // for stop details builder
     TextView tvBusStopIndex;
     EditText busStopName,busReachTime,busExitTime,busWaitingTime;
     String busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr;
+    RecyclerView rvBusStopsData;
+
+    ArrayList<BusStopsModel> busStopsModelsData;  // Bus Stop Model because we get the all data with the form of Bus Model and we get as Array List.
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,14 +110,23 @@ public class AddStopsPage extends AppCompatActivity {
 
         // Getting the key
         String busNumberKey = getIntent().getStringExtra("BusNumberKey");
+
+
+        //progress dialog assigned
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Fetching the data...");
+        progressDialog.show();
+
         // Get all bus key data
         GetBusDetailsData(busNumberKey);
-//
-//        // for stop details builder
-//        busStopName = findViewById(R.id.asdsdBusStopName);
-//        busReachTime = findViewById(R.id.asdsdBusReachTime);
-//        busExitTime = findViewById(R.id.asdsdBusExitTime);
-//        busWaitingTime = findViewById(R.id.asdsdBusWaitingTime);
+
+        //Get all bus stops data in recycle view
+        GetAllStopsData();
+
+
+        // Recycle view to show stops data
+        rvBusStopsData = findViewById(R.id.rvBusStopsData);
 
         // add stops button clicked
         llAddStopBtn = findViewById(R.id.llAddStopsBtn);
@@ -114,6 +138,7 @@ public class AddStopsPage extends AppCompatActivity {
                 AddStopsBtn();
             }
         });
+
     }
 
     // Get the data using busNum key
@@ -144,7 +169,7 @@ public class AddStopsPage extends AppCompatActivity {
         String busNumberKey = getIntent().getStringExtra("BusNumberKey");
 
         addStopsBtnBuilder = new AlertDialog.Builder(this);
-        addStopsBtnBuilder.setTitle("Add Bus Stop")
+        addStopsBtnBuilder
                 .setCancelable(false);
 
         // set the custom layout
@@ -166,8 +191,6 @@ public class AddStopsPage extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog,int which)
                             {
-
-
                                 busStopNameStr = busStopName.getText().toString();
                                 busReachTimeStr = busReachTime.getText().toString();
                                 busWaitingTimeStr = busWaitingTime.getText().toString();
@@ -190,50 +213,77 @@ public class AddStopsPage extends AppCompatActivity {
                                     }
                                 });
                                 Toast.makeText(getApplicationContext(),"Stop "+busStopIndex+busStopNameStr,Toast.LENGTH_SHORT).show();
-
-//                                if(TextUtils.isEmpty(busStopNameStr)){
-//                                    busStopName.setError("Bus Stop Name cannot be empty");
-//                                    busStopName.requestFocus();
-//                                }
-//                                else if(TextUtils.isEmpty(busReachTimeStr)){
-//                                    busReachTime.setError("Bus Name cannot be empty");
-//                                    busReachTime.requestFocus();
-//                                }else if(TextUtils.isEmpty(busExitTimeStr)){
-//                                    busExitTime.setError("Source cannot be empty");
-//                                    busExitTime.requestFocus();
-//                                }else if(TextUtils.isEmpty(busWaitingTimeStr)){
-//                                    busWaitingTime.setError("Bus Name cannot be empty");
-//                                    busWaitingTime.requestFocus();
-//                                }else{
-//
-//                                }
-
-
-
-                            }
-                        });
+                        }
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
 
         addStopsBtnBuilder.create().show();
-
-//        busStopIndex++;
-//        BusStopsModel busStopsModelIndex = new BusStopsModel(""+busStopIndex);
-//        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Stops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Bus Stops").document(""+busStopIndex);
-//
-//        documentReference.set(busStopsModelIndex).addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void unused) {
-//
-//                                Toast.makeText(getApplicationContext(),"hii "+busStopIndex,Toast.LENGTH_SHORT).show();
-//
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.d(TAG,"Error : " + e.toString());
-//            }
-//        });
-
-
     }
 
+    public void GetAllStopsData() {
+        String busNumberKey = getIntent().getStringExtra("BusNumberKey");
+        busStopsModelsData = new ArrayList<>();
+        busStopsModelsData.clear();
+
+        FirebaseFirestore.getInstance().collection("Stops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection(busNumberKey).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(error != null){
+                    if(progressDialog.isShowing()){
+                        progressDialog.dismiss();
+                    }
+                    Log.e("Firestore error",error.getMessage());
+                    return;
+
+                }else {
+                    if(!value.isEmpty()){
+                        for (DocumentChange documentChange : value.getDocumentChanges()){
+                            if(documentChange.getType() == DocumentChange.Type.ADDED){
+                                busStopsModelsData.clear();
+                                List<BusStopsModel> stopsData = value.toObjects(BusStopsModel.class);
+                                busStopsModelsData.addAll(stopsData);
+
+                                //setting all stop data to the recycle view
+                                rvBusStopsData.setLayoutManager(new LinearLayoutManager(AddStopsPage.this));
+                                rvBusStopsData.setAdapter(new StopsDetailsDataAdapter(AddStopsPage.this,busStopsModelsData));
+                            }else if(documentChange.getType() == DocumentChange.Type.MODIFIED){
+                                busStopsModelsData.clear();
+                                List<BusStopsModel> stopsData = value.toObjects(BusStopsModel.class);
+                                busStopsModelsData.addAll(stopsData);
+
+                                //setting all stop data to the recycle view
+                                rvBusStopsData.setLayoutManager(new LinearLayoutManager(AddStopsPage.this));
+                                rvBusStopsData.setAdapter(new StopsDetailsDataAdapter(AddStopsPage.this,busStopsModelsData));
+                            }else if(documentChange.getType() == DocumentChange.Type.REMOVED){
+                                busStopsModelsData.clear();
+                                List<BusStopsModel> stopsData = value.toObjects(BusStopsModel.class);
+                                busStopsModelsData.addAll(stopsData);
+
+                                //setting all stop data to the recycle view
+                                rvBusStopsData.setLayoutManager(new LinearLayoutManager(AddStopsPage.this));
+                                rvBusStopsData.setAdapter(new StopsDetailsDataAdapter(AddStopsPage.this,busStopsModelsData));
+                            }
+                            if(progressDialog.isShowing()){
+                                progressDialog.dismiss();
+                            }
+                        }
+                    }else {
+                        busStopsModelsData.clear();
+                        List<BusStopsModel> stopsData = value.toObjects(BusStopsModel.class);
+                        busStopsModelsData.addAll(stopsData);
+
+                        //setting all stop data to the recycle view
+                        rvBusStopsData.setLayoutManager(new LinearLayoutManager(AddStopsPage.this));
+                        rvBusStopsData.setAdapter(new StopsDetailsDataAdapter(AddStopsPage.this,busStopsModelsData));
+
+                    }
+                }
+            }
+        });
+
+    }
 }

@@ -4,8 +4,8 @@ public class BusStopsModel {
     String stopsIndex;
     String busStopName,busReachTime,busExitTime,busWaitingTime;
 
-    public BusStopsModel(String stopsIndex) {
-        this.stopsIndex = stopsIndex;
+    public BusStopsModel(){
+
     }
 
     public BusStopsModel(String stopsIndex, String busStopName, String busReachTime, String busExitTime, String busWaitingTime) {

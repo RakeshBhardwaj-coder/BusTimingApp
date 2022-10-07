@@ -89,6 +89,7 @@ public class AllBuseDetails extends AppCompatActivity {
         progressDialog.show();
 
 
+
         // Side Options are clickable now
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -158,7 +159,8 @@ public class AllBuseDetails extends AppCompatActivity {
                                         rvBusDetails.setLayoutManager(new LinearLayoutManager(AllBuseDetails.this));
                                         rvBusDetails.setAdapter(new BusDetailsDataAdapter(AllBuseDetails.this,allBusDetailsData));
 
-                                    }else if(documentChange.getType() == DocumentChange.Type.MODIFIED) {
+                                    }
+                                    else if(documentChange.getType() == DocumentChange.Type.MODIFIED) {
                                         allBusDetailsData.clear();
                                         List<BusModel> data = value.toObjects(BusModel.class);
                                         allBusDetailsData.addAll(data);
