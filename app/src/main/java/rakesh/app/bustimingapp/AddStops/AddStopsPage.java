@@ -4,41 +4,32 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -47,14 +38,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import rakesh.app.bustimingapp.Adapters.BusDetailsDataAdapter;
 import rakesh.app.bustimingapp.Adapters.StopsDetailsDataAdapter;
-import rakesh.app.bustimingapp.Auth.SignInPage;
-import rakesh.app.bustimingapp.BusRegistration.AllBuseDetails;
-import rakesh.app.bustimingapp.Home.MainActivity;
 import rakesh.app.bustimingapp.Models.BusModel;
 import rakesh.app.bustimingapp.Models.BusStopsModel;
 import rakesh.app.bustimingapp.R;
@@ -70,17 +61,21 @@ public class AddStopsPage extends AppCompatActivity {
 
     TextView addStopsBusNumber,addStopsBusName,addStopsBusType,addStopsBusSource,addStopsBusDestination,addStopsBusSourceTime,addStopsBusDestinationTime;
 
-    static int busStopIndex;
+    int busStopIndex;
     AlertDialog.Builder addStopsBtnBuilder;
     ProgressDialog progressDialog;
     // for stop details builder
-    TextView tvBusStopIndex;
-    EditText busStopName,busReachTime,busExitTime,busWaitingTime;
+    TextView busStopIndexShow; //show the index before add stops
+    TextView busExitTime,busReachTime;
+    EditText busStopName,busWaitingTime;
     String busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr;
     RecyclerView rvBusStopsData;
 
     ArrayList<BusStopsModel> busStopsModelsData;  // Bus Stop Model because we get the all data with the form of Bus Model and we get as Array List.
 
+    TimePickerDialog picker;
+
+    public static String busNumberKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +86,7 @@ public class AddStopsPage extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawableLayoutAddBusStopsPage);
         addBusStopsToolbar = findViewById(R.id.toolBarAddStopsPage);
 
-
-
-
-        // get the white home back icon
+        // get the white(popupTheme in xml) home back(Manifest) btn
          addBusStopsToolbar = findViewById(R.id.toolBarAddStopsPage);
         setSupportActionBar(addBusStopsToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -109,7 +101,7 @@ public class AddStopsPage extends AppCompatActivity {
         addStopsBusDestinationTime = findViewById(R.id.tvASPDestinationTime);
 
         // Getting the key
-        String busNumberKey = getIntent().getStringExtra("BusNumberKey");
+        busNumberKey = getIntent().getStringExtra("BusNumberKey");
 
 
         //progress dialog assigned
@@ -135,6 +127,7 @@ public class AddStopsPage extends AppCompatActivity {
             public void onClick(View view) {
 
                 // Alert dialog show and add the data to the firestore stop section
+
                 AddStopsBtn();
             }
         });
@@ -150,6 +143,10 @@ public class AddStopsPage extends AppCompatActivity {
                     public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                         if(error == null){
                             BusModel selectedBusModel = value.toObject(BusModel.class);
+
+                            //getting the count of stops in firebase
+                            busStopIndex = StopsDetailsDataAdapter.stopCounts;
+
                             addStopsBusNumber.setText(selectedBusModel.getBusNumber());
                             addStopsBusName.setText(selectedBusModel.getBusName());
                             addStopsBusType.setText(selectedBusModel.getBusType());
@@ -164,9 +161,7 @@ public class AddStopsPage extends AppCompatActivity {
     }
 
     public void AddStopsBtn(){
-        busStopIndex = busStopIndex + 1;
 
-        String busNumberKey = getIntent().getStringExtra("BusNumberKey");
 
         addStopsBtnBuilder = new AlertDialog.Builder(this);
         addStopsBtnBuilder
@@ -175,15 +170,28 @@ public class AddStopsPage extends AppCompatActivity {
         // set the custom layout
         final View customLayout = getLayoutInflater().inflate(R.layout.add_stops_data_show_design,null);
         addStopsBtnBuilder.setView(customLayout);
+
+        busStopIndexShow = customLayout.findViewById(R.id.asdsdStopIndex);
+        busStopIndexShow.setText(""+busStopIndex);
         busStopName = customLayout.findViewById(R.id.asdsdBusStopName);
         busReachTime = customLayout.findViewById(R.id.asdsdBusReachTime);
         busWaitingTime = customLayout.findViewById(R.id.asdsdBusWaitingTime);
         busExitTime = customLayout.findViewById(R.id.asdsdBusExitTime);
+        ImageView setBusReachTimeBtn = customLayout.findViewById(R.id.asdsdSetBusReachTime);
+        ImageView setBusExitTimeBtn = customLayout.findViewById(R.id.asdsdSetBusExitTime);
 
-
-
-
-
+        setBusReachTimeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SetBusReachTime();
+            }
+        });
+        setBusExitTimeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SetBusExitTime();
+            }
+        });
         // add a button
         addStopsBtnBuilder
                 .setPositiveButton("Add",new DialogInterface.OnClickListener() {
@@ -201,10 +209,8 @@ public class AddStopsPage extends AppCompatActivity {
                                 documentReference.set(busStopsModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-
-
-                                        Toast.makeText(getApplicationContext(),"Stop "+busStopIndex+busStopNameStr,Toast.LENGTH_SHORT).show();
-//                                        busStopIndex = busStopIndex + 1;
+                                       // Get stops count and increment at same time
+                                       GetStopCounts();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -224,12 +230,75 @@ public class AddStopsPage extends AppCompatActivity {
         addStopsBtnBuilder.create().show();
     }
 
+    public void SetBusReachTime(){
+        final Calendar cldr = Calendar.getInstance();
+        // time picker dialog
+        picker = new TimePickerDialog(AddStopsPage.this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                        cldr.set(0,0,0,sHour,sMinute);
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm aaa");
+
+                        busReachTime.setText(simpleDateFormat.format(cldr.getTime()).toString());
+                    }
+                }, 12, 0, false);
+        picker.show();
+    }
+    public void SetBusReachTime(Context context, TextView tvBusReachTime){
+        final Calendar cldr = Calendar.getInstance();
+        // time picker dialog
+        picker = new TimePickerDialog(context,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                        cldr.set(0,0,0,sHour,sMinute);
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm aaa");
+
+                        tvBusReachTime.setText(simpleDateFormat.format(cldr.getTime()).toString());
+                    }
+                }, 12, 0, false);
+        picker.show();
+    }
+    public void SetBusExitTime(){
+        final Calendar cldr = Calendar.getInstance();
+        // time picker dialog
+        picker = new TimePickerDialog(AddStopsPage.this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                        cldr.set(0,0,0,sHour,sMinute);
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm aaa");
+
+                        busExitTime.setText(simpleDateFormat.format(cldr.getTime()).toString());
+                    }
+                }, 12, 0, false);
+        picker.show();
+    }
+    public void SetBusExitTime(Context context, TextView tvBusExitTime){
+        final Calendar cldr = Calendar.getInstance();
+        // time picker dialog
+        picker = new TimePickerDialog(context,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                        cldr.set(0,0,0,sHour,sMinute);
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm aaa");
+
+                        tvBusExitTime.setText(simpleDateFormat.format(cldr.getTime()).toString());
+                    }
+                }, 12, 0, false);
+        picker.show();
+    }
+
+
+
     public void GetAllStopsData() {
-        String busNumberKey = getIntent().getStringExtra("BusNumberKey");
         busStopsModelsData = new ArrayList<>();
         busStopsModelsData.clear();
 
-        FirebaseFirestore.getInstance().collection("Stops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection(busNumberKey).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        FirebaseFirestore.getInstance().collection("Stops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection(busNumberKey)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(error != null){
@@ -280,10 +349,35 @@ public class AddStopsPage extends AppCompatActivity {
                         rvBusStopsData.setLayoutManager(new LinearLayoutManager(AddStopsPage.this));
                         rvBusStopsData.setAdapter(new StopsDetailsDataAdapter(AddStopsPage.this,busStopsModelsData));
 
+                        Toast.makeText(getApplicationContext(),"Add your first stop.",Toast.LENGTH_SHORT).show();
+                        if(progressDialog.isShowing()){
+                            progressDialog.dismiss();
+                        }
                     }
                 }
             }
         });
 
+    }
+
+   void GetStopCounts(){
+        Map<String, Object> busStopIndexMap = new HashMap<>();
+        busStopIndexMap.put("stopCounts", busStopIndex);
+
+        // update the bus stop count to firebase
+        FirebaseFirestore.getInstance().collection("Stops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection(busNumberKey).document("--stats--")
+                .set(busStopIndexMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getApplicationContext(),"Stop "+busStopIndex+busStopNameStr,Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG,"Error "+e.toString());
+                    }
+                });
+        busStopIndex = busStopIndex + 1;
     }
 }

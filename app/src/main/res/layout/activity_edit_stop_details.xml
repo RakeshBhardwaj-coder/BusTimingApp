@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarEditStopsDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"
+        app:title="Edit Bus Stop Details"
+        app:titleMarginStart="10dp"
+        app:titleTextColor="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
+        />
+
+    <!--    esd means edit stop details -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_10ssp"
+        android:layout_below="@+id/toolBarEditStopsDetails"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_arrow"
+            android:backgroundTint="@color/purple_500"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stop"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+                />
+            <TextView
+                android:id="@+id/esdStopIndex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5ssp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/esdBusStopName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@color/white"
+            android:hint="Bus Stop Name"
+            android:textAlignment="textStart"
+            android:padding="10dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+            <TextView
+                android:id="@+id/esdBusReachTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="Bus Reach Time"
+                android:textSize="@dimen/_15ssp"
+                android:textAlignment="textStart"
+                android:padding="10dp"
+                android:layout_weight="2"
+                />
+            <ImageView
+                android:id="@+id/esdSetBusReachTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_clock"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+
+            >
+            <TextView
+                android:id="@+id/esdBusExitTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="Bus Exit Time"
+                android:textSize="@dimen/_15ssp"
+                android:textAlignment="textStart"
+                android:padding="10dp"
+                android:layout_weight="2"
+                />
+            <ImageView
+                android:id="@+id/esdSetBusExitTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_clock"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+
+                />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/esdBusWaitingTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@color/white"
+            android:hint="Bus Waiting Time"
+            android:textAlignment="textStart"
+            android:padding="10dp"
+            />
+
+        <Button
+            android:id="@+id/esdEditBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Edit"
+            android:layout_margin="10dp"
+            />
+        <Button
+            android:id="@+id/esdCancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cancel"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -41,7 +41,7 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/ivBddsEdit"
+                android:id="@+id/asdsEditStop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_edit"
@@ -51,7 +51,7 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 />
             <ImageView
-                android:id="@+id/ivBddsDelete"
+                android:id="@+id/asdsDeleteStop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:tint="@color/white"
@@ -88,7 +88,6 @@
                 android:id="@+id/asdsBusReachTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="11 : 55 AM"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
@@ -98,7 +97,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_5ssp"
+                android:layout_marginRight="@dimen/_5ssp"
                 android:text="To"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
@@ -109,7 +109,6 @@
                 android:id="@+id/asdsBusExitTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="12 : 05 PM"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
@@ -120,14 +119,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2">
-
+            android:orientation="horizontal"
+            >
             <TextView
                 android:id="@+id/asdsBusWaitingTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="10 min of waiting"
+                android:paddingRight="@dimen/_5ssp"
+                android:text="10"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mins of waiting"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15ssp"
 

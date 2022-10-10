@@ -3,6 +3,7 @@ package rakesh.app.bustimingapp.Adapters;
 import static android.content.ContentValues.TAG;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
@@ -79,7 +80,8 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
+
+//                                dialogInterface.cancel();
                             }
                         })
                         .show();
@@ -96,7 +98,8 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // Delete the data form the firebase of selected bus number `allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()`
-                                FirebaseFirestore.getInstance().collection("Buses").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Bus Number").document(allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()).delete()
+                                FirebaseFirestore.getInstance().collection("Buses").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Bus Number").document(allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber())
+                                                .delete()
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
@@ -110,9 +113,6 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                                                 Log.d(TAG,"Error in Deletion : " + e.toString());
                                             }
                                         });
-
-
-                                Toast.makeText(allBuseDetails.getApplicationContext(), "Delete",Toast.LENGTH_SHORT).show();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -148,6 +148,10 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
         AlertDialog.Builder editBtnBuilder,deleteBtnBuilder;
 
         Button addStopsBtn;
+
+        View customLayout;
+        Dialog editStopBuilder1; // editable form will show to edit data by this builder
+
 
         public BusDetailsDataHolder(@NonNull View itemView) {
             super(itemView);
