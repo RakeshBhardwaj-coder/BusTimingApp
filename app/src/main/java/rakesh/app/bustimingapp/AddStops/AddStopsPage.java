@@ -137,28 +137,30 @@ public class AddStopsPage extends AppCompatActivity {
     // Get the data using busNum key
     public void GetBusDetailsData(String busNumKey){
 
-        FirebaseFirestore.getInstance().collection("Buses").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Bus Number").document(busNumKey)
-                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error == null){
-                            BusModel selectedBusModel = value.toObject(BusModel.class);
+            FirebaseFirestore.getInstance().collection("Buses").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Bus Number").document(busNumKey)
+                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                            if(error == null){
+                                BusModel selectedBusModel = value.toObject(BusModel.class);
 
-                            //getting the count of stops in firebase
-                            busStopIndex = StopsDetailsDataAdapter.stopCounts;
+                                //getting the count of stops in firebase
+                                busStopIndex = StopsDetailsDataAdapter.stopCounts;
 
-                            addStopsBusNumber.setText(selectedBusModel.getBusNumber());
-                            addStopsBusName.setText(selectedBusModel.getBusName());
-                            addStopsBusType.setText(selectedBusModel.getBusType());
-                            addStopsBusSource.setText(selectedBusModel.getBusSource());
-                            addStopsBusDestination.setText(selectedBusModel.getBusDestination());
-                            addStopsBusSourceTime.setText(selectedBusModel.getBusSourceTime());
-                            addStopsBusDestinationTime.setText(selectedBusModel.getBusDestinationTime());
+                                    addStopsBusNumber.setText(selectedBusModel.getBusNumber());
 
+                                addStopsBusName.setText(selectedBusModel.getBusName());
+                                addStopsBusType.setText(selectedBusModel.getBusType());
+                                addStopsBusSource.setText(selectedBusModel.getBusSource());
+                                addStopsBusDestination.setText(selectedBusModel.getBusDestination());
+                                addStopsBusSourceTime.setText(selectedBusModel.getBusSourceTime());
+                                addStopsBusDestinationTime.setText(selectedBusModel.getBusDestinationTime());
+
+                            }
                         }
-                    }
-                });
-    }
+                    });
+        }
+
 
     public void AddStopsBtn(){
 

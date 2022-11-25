@@ -28,35 +28,43 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:orientation="vertical"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             >
+
 
             <EditText
                 android:id="@+id/etStoppage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@color/white"
                 android:hint="Your Stoppage"
-                android:layout_margin="10dp"
-                android:padding="12dp"
-                android:background="@color/white"/>
+                android:padding="5dp"
+                android:textSize="@dimen/_20ssp"
+                android:layout_marginTop="@dimen/_20ssp"/>
+
+
             <EditText
                 android:id="@+id/etDestination"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@color/white"
                 android:hint="Your Destination"
-                android:layout_margin="10dp"
-                android:padding="12dp"
-                android:background="@color/white"/>
+                android:padding="5dp"
+                android:textSize="@dimen/_20ssp" />
 
-            <ImageButton
-                android:layout_width="100dp"
-                android:layout_height="48dp"
+            <ImageView
+                android:id="@+id/searchBtn"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:background="@color/purple_500"
-                android:onClick="Clicked"
                 android:src="@drawable/ic_search"
+                android:onClick="Clicked"
+
                 app:tint="@color/white" />
 
 

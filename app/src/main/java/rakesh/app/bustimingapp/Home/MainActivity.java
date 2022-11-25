@@ -12,7 +12,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     EditText etStoppage, etDestination;
+    ImageView btnSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.getDrawerArrowDrawable().setColor(Color.WHITE);
         toggle.syncState();
+
+        btnSearch = findViewById(R.id.searchBtn);
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -88,6 +95,14 @@ public class MainActivity extends AppCompatActivity {
 
         etStoppage = findViewById(R.id.etStoppage);
         etDestination = findViewById(R.id.etDestination);
+
+        // Search btn clicked
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchButton();
+            }
+        });
     }
 
     public void Clicked(View view){
@@ -100,5 +115,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), SignInPage.class);
         this.startActivity(i);
         Toast.makeText(getApplicationContext(),"SignInPage",Toast.LENGTH_SHORT).show();
+    }
+    public void SearchButton(){
+        Toast.makeText(getApplicationContext(),"Search Btn",Toast.LENGTH_SHORT).show();
+
     }
 }

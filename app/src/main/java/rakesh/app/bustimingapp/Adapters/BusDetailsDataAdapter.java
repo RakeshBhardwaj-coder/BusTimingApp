@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -49,6 +51,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
     @NonNull
     @Override
     public BusDetailsDataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         return new BusDetailsDataHolder(LayoutInflater.from(allBuseDetails).inflate(R.layout.bus_details_data_show,parent,false));
     }
 
@@ -97,22 +100,58 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                // Delete the data form the firebase of selected bus number `allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()`
-                                FirebaseFirestore.getInstance().collection("Buses").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Bus Number").document(allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber())
-                                                .delete()
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if(task.isSuccessful()){
-                                                            Toast.makeText(allBuseDetails.getApplicationContext(), "Deleted",Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    }
-                                                }).addOnFailureListener(new OnFailureListener() {
+
+final String busNumberStr = allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber();
+
+
+
+                                // Delete All Stops as well as delete the bus
+
+                                FirebaseFirestore.getInstance().collection("Stops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection(busNumberStr).get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                             @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.d(TAG,"Error in Deletion : " + e.toString());
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                                                    FirebaseFirestore.getInstance().collection("Stops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection(busNumberStr).document(queryDocumentSnapshot.getId())
+                                                            .delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    if(task.isSuccessful()){
+                                                                        Toast.makeText(allBuseDetails.getApplicationContext(), "All done!",Toast.LENGTH_SHORT).show();
+                                                                        //  Delete the data form the firebase of selected bus number `allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()`
+                                                                        FirebaseFirestore.getInstance().collection("Buses").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Bus Number").document(busNumberStr)
+                                                                                .delete()
+                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                    @Override
+                                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                                        if(task.isSuccessful()){
+                                                                                            Toast.makeText(allBuseDetails.getApplicationContext(), "Deleted",Toast.LENGTH_SHORT).show();
+                                                                                        }
+                                                                                    }
+                                                                                }).addOnFailureListener(new OnFailureListener() {
+                                                                                    @Override
+                                                                                    public void onFailure(@NonNull Exception e) {
+                                                                                        Log.d(TAG,"Error in Deletion : " + e.toString());
+                                                                                    }
+                                                                                });
+
+                                                                    }
+                                                                }
+                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Log.d(TAG,"Error "+e.toString());
+                                                                }
+                                                            });
+
+                                                }
+
                                             }
                                         });
+
+
+
+
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -133,6 +172,10 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                 allBuseDetails.startActivity(new Intent(allBuseDetails, AddStopsPage.class).putExtra("BusNumberKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()));
             }
         });
+    }
+
+    private void DeleteAllTheStops(String busNumber) {
+
     }
 
     @Override
