@@ -17,10 +17,10 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_500"
+            android:background="@color/primary_color"
             app:title="Bus Timing App"
             app:titleMarginStart="10dp"
-            app:titleTextColor="@color/white" />
+            app:titleTextColor="@color/text_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/sideBar"
-        app:headerLayout="@layout/header"
+        app:headerLayout="@layout/user_profile"
         app:menu="@menu/sidemenu"
         android:layout_gravity="start"
         ></com.google.android.material.navigation.NavigationView>

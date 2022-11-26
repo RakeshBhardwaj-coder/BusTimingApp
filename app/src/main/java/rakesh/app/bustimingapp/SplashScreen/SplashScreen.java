@@ -1,4 +1,4 @@
-package rakesh.app.bustimingapp;
+package rakesh.app.bustimingapp.SplashScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import rakesh.app.bustimingapp.Home.MainActivity;
+import rakesh.app.bustimingapp.R;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -16,7 +17,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         // Hander and delayed to show the splash screen for second then open the home screen
-        // show the logo then start the next activity after the 2sec
+        // show the logo then start the next activity after the 1sec
         // when you back the logo will not show.
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -24,6 +25,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
-        },2000);
+        },1000);
     }
 }

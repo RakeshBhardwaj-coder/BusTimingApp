@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/sideBarAllBusDetails"
-        app:headerLayout="@layout/header"
+        app:headerLayout="@layout/user_profile"
         app:menu="@menu/sidemenu"
         android:layout_gravity="start"
         ></com.google.android.material.navigation.NavigationView>
