@@ -27,7 +27,7 @@
             android:id="@+id/toolBarRegiPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_500"
+            android:background="@color/primary_color"
             app:title="Register Bus Details"
             app:titleMarginStart="10dp"
             app:titleTextColor="@color/white" />

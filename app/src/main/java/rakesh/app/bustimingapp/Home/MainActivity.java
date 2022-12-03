@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.OpenSidebar,R.string.CloseSidebar);
         drawerLayout.addDrawerListener(toggle);
-        toggle.getDrawerArrowDrawable().setColor(Color.argb(255,75,77,76));
+        toggle.getDrawerArrowDrawable().setColor(Color.WHITE);
         toggle.syncState();
 
         btnSearch = findViewById(R.id.searchBtn);

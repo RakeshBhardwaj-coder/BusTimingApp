@@ -8,12 +8,12 @@
         android:id="@+id/toolBarEditStopsDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
+        android:background="@color/primary_color"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="Edit Bus Stop Details"
         app:titleMarginStart="10dp"
         app:titleTextColor="@color/white"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
         />
 
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_arrow"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@color/primary_color"
             android:gravity="center"
             >
             <TextView

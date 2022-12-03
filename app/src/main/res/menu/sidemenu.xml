@@ -4,18 +4,17 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_home"
-            android:icon="@drawable/ic_add_bus"
-            android:title="Home"
+            android:icon="@drawable/ic_search"
+            android:title="Find Bus"
             ></item>
         <item
-            android:icon="@drawable/ic_add_bus"
             android:title="Register Bus Details"
             >
 
               <menu>
                   <item
                       android:id="@+id/menu_registerBusDetails"
-                      android:icon="@drawable/ic_add_bus"
+                      android:icon="@drawable/ic_registration"
                       android:title="Register Bus Details"
                       />
                   <item
@@ -33,7 +32,7 @@
 
                 <item
                     android:id="@+id/menu_logout"
-                    android:icon="@drawable/ic_add_bus"
+                    android:icon="@drawable/ic_logout"
                     android:title="Log Out"
                     />
             </menu>

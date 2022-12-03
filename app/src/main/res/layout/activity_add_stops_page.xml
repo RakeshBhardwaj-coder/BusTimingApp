@@ -18,12 +18,12 @@
             android:id="@+id/toolBarAddStopsPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_500"
+            android:background="@color/primary_color"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:title="Add Bus Stops"
             app:titleMarginStart="10dp"
             app:titleTextColor="@color/white"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
             />
 
@@ -165,7 +165,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/rectagular_shape"
-                        android:backgroundTint="@color/gray"
+                        android:backgroundTint="@color/primary_color"
                         android:gravity="center"
                         >
 
@@ -191,8 +191,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/llBusDetails"
-            android:layout_margin="@dimen/_5sdp"
-            >
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp">
 
             <androidx.recyclerview.widget.RecyclerView
 

@@ -11,6 +11,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/background_color"
         >
 
         <androidx.appcompat.widget.Toolbar
@@ -25,48 +26,92 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@color/foreground_color"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            >
+            android:orientation="vertical">
 
 
-            <EditText
-                android:id="@+id/etStoppage"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:background="@color/white"
-                android:hint="Your Stoppage"
-                android:padding="5dp"
-                android:textSize="@dimen/_20ssp"
-                android:layout_marginTop="@dimen/_20ssp"/>
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:src="@drawable/ic_start2" />
+
+                <EditText
+                    android:id="@+id/etStoppage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20ssp"
+                    android:background="@color/white"
+                    android:hint="Your Stoppage"
+                    android:padding="5dp"
+                    android:textSize="@dimen/_15ssp" />
+            </LinearLayout>
 
 
-            <EditText
-                android:id="@+id/etDestination"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:src="@drawable/ic_start"
+
+                    />
+
+                <EditText
+                    android:id="@+id/etDestination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@color/white"
+                    android:hint="Your Destination"
+                    android:padding="5dp"
+                    android:textSize="@dimen/_15ssp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:background="@color/white"
-                android:hint="Your Destination"
-                android:padding="5dp"
-                android:textSize="@dimen/_20ssp" />
+                android:gravity="center_horizontal"
+                android:background="@color/primary_color"
+                >
+                <ImageView
+                    android:id="@+id/searchBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:onClick="Clicked"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/white"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:text="Find Bus"
+                    android:textColor="@color/white"
+                    />
 
-            <ImageView
-                android:id="@+id/searchBtn"
-                android:layout_width="@dimen/_90sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@color/purple_500"
-                android:src="@drawable/ic_search"
-                android:onClick="Clicked"
-
-                app:tint="@color/white" />
-
+            </LinearLayout>
 
 
 
@@ -75,6 +120,7 @@
 
 
     </RelativeLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

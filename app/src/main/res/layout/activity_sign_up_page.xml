@@ -8,7 +8,11 @@
     >
 
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/signUpToolBar"
         android:layout_width="match_parent"
@@ -22,21 +26,25 @@
         />
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@color/background_color"
+
+        >
 
 
         <LinearLayout
+            android:layout_margin="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_20sdp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:orientation="vertical"
             android:focusableInTouchMode="true"
-
+            android:orientation="vertical"
+            android:background="@color/foreground_color"
             >
 
             <EditText
@@ -47,7 +55,7 @@
                 android:background="@color/white"
                 android:hint="Full Name"
                 android:padding="5dp"
-                android:textSize="@dimen/_20ssp" />
+                android:textSize="@dimen/_18ssp" />
 
             <EditText
                 android:id="@+id/etEmail"
@@ -57,7 +65,7 @@
                 android:background="@color/white"
                 android:hint="Email"
                 android:padding="5dp"
-                android:textSize="@dimen/_20ssp" />
+                android:textSize="@dimen/_18ssp" />
 
             <EditText
                 android:id="@+id/etPassword"
@@ -68,7 +76,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="5dp"
-                android:textSize="@dimen/_20ssp" />
+                android:textSize="@dimen/_18ssp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -84,8 +92,8 @@
                     android:onClick="SignInPage"
                     android:padding="10dp"
                     android:text="already have accout? SignIn"
-                    android:textColor="@color/teal_700"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_13ssp" />
             </RelativeLayout>
 
 
@@ -101,6 +109,7 @@
 
         </LinearLayout>
     </RelativeLayout>
+</LinearLayout>
 
 
 </RelativeLayout>

@@ -1,19 +1,14 @@
 package rakesh.app.bustimingapp.Auth;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -72,6 +67,9 @@ public class SignInPage extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), SignUpPage.class);
         startActivity(i);
     }
+    public void ForgetPassword(View view){
+        startActivity(new Intent(getApplicationContext(), ForgetPasswordPage.class));
+    }
     public void LoginUser(){
         String emailStr = etEmail.getText().toString();
         String passwordStr = etPassword.getText().toString();
@@ -86,7 +84,7 @@ public class SignInPage extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getApplicationContext(), "Loggin Successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Login Successfully.", Toast.LENGTH_SHORT).show();
 
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }else {

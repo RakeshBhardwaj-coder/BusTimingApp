@@ -6,76 +6,67 @@
     android:padding="@dimen/_5sdp"
     android:background="@drawable/rectagular_shape"
     android:layout_margin="@dimen/_10sdp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_2sdp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="1"
             >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_4sdp"
-                    android:text="Stop"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_18ssp"
-                    />
-                <TextView
-                    android:id="@+id/asdsBusStopIndex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_4sdp"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:text="1"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_18ssp"
-                    />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/asdsEditStop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit"
-                app:tint="@color/white"
-                android:padding="@dimen/_3sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_5sdp"
-                />
-            <ImageView
-                android:id="@+id/asdsDeleteStop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tint="@color/white"
-                android:src="@drawable/ic_delete"
-                android:padding="@dimen/_3sdp"
-                android:layout_marginRight="@dimen/_5sdp"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            >
             <TextView
-                android:id="@+id/asdsBusStopName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stop Name"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:text="Bus Name"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_16ssp"
-                android:layout_weight="3"
+                android:textSize="@dimen/_18ssp"
                 />
+
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            >
 
+            <TextView
+                android:id="@+id/tvBddsSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Your Source"
+                android:textSize="@dimen/_18ssp"
+                android:textColor="@color/white"
+
+                />
+
+            <ImageView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_right_arrow"
+                android:layout_weight="1"
+                app:tint="@color/white"
+                android:layout_gravity="center_vertical"
+                />
+
+            <TextView
+                android:id="@+id/tvBddsDestination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Your Destination"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18ssp"
+
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -135,13 +126,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="mins of waiting"
+                android:text="mins of arrival"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15ssp"
 
                 />
 
         </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="More Info"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white"
+
+            />
 
     </LinearLayout>
 

@@ -11,6 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
 
 
         <androidx.appcompat.widget.Toolbar
@@ -26,73 +32,88 @@
             />
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:gravity="center">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@color/foreground_color"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_10sdp">
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="Email"
+                android:padding="5dp"
+                android:textSize="@dimen/_18ssp" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:textSize="@dimen/_18ssp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
                 android:orientation="vertical"
-                android:focusableInTouchMode="true"
                 >
 
-                <EditText
-                    android:id="@+id/etEmail"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:background="@color/white"
-                    android:hint="Email"
-                    android:padding="5dp"
-                    android:textSize="@dimen/_20ssp" />
-
-                <EditText
-                    android:id="@+id/etPassword"
+                    android:layout_alignParentRight="true"
+                    android:onClick="SignUpPage"
+                    android:padding="10dp"
+                    android:textAlignment="textEnd"
+                    android:text="Don't have accout? SignUp"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_13ssp" />
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:background="@color/white"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:padding="5dp"
-                    android:textSize="@dimen/_20ssp" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:onClick="SignUpPage"
-                        android:padding="10dp"
-                        android:text="Don't have accout? SignUp"
-                        android:textColor="@color/teal_700"
-                        android:textSize="@dimen/_15ssp" />
-                </RelativeLayout>
-
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="20dp"
-                    android:onClick="LoginBtn"
-                    android:text="login"
-                    android:textSize="@dimen/_15ssp" />
-
+                    android:layout_alignParentRight="true"
+                    android:padding="10dp"
+                    android:onClick="ForgetPassword"
+                    android:textAlignment="textEnd"
+                    android:text="Forgot Password?"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_13ssp" />
 
             </LinearLayout>
-        </RelativeLayout>
 
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:onClick="LoginBtn"
+                android:text="login"
+                android:textSize="@dimen/_15ssp" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
 
     </RelativeLayout>
 
