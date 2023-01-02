@@ -28,9 +28,9 @@ import rakesh.app.bustimingapp.R;
 
 public class StopsDetailsDataAdapter extends RecyclerView.Adapter<StopsDetailsDataAdapter.StopsDetailsDataHolder> {
 
+    public static int stopCounts;
     AddStopsPage addStopsPage;
     ArrayList<BusStopsModel> busStopsModelData;
-    public static int stopCounts;
 
     public StopsDetailsDataAdapter(AddStopsPage addStopsPage, ArrayList<BusStopsModel> busStopsModelData) {
         this.addStopsPage = addStopsPage;
@@ -90,6 +90,7 @@ public class StopsDetailsDataAdapter extends RecyclerView.Adapter<StopsDetailsDa
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
                                                     Toast.makeText(addStopsPage, "Stop "+holder.busStopIndex.getText()+" Deleted",Toast.LENGTH_SHORT).show();
+                                                    stopCounts = stopCounts - 1 ;
 
                                                 }
                                             }

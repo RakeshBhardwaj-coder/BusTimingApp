@@ -1,24 +1,20 @@
 package rakesh.app.bustimingapp.FindYourBus;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -26,22 +22,25 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-import rakesh.app.bustimingapp.Adapters.BusDetailsDataAdapter;
 import rakesh.app.bustimingapp.Adapters.BusFindDataAdapter;
-import rakesh.app.bustimingapp.BusRegistration.AllBuseDetails;
 import rakesh.app.bustimingapp.Models.BusFindModel;
-import rakesh.app.bustimingapp.Models.BusModel;
 import rakesh.app.bustimingapp.R;
 
 public class FindYourBus extends AppCompatActivity {
 
     String findStoppageStr,findDestinationStr;
     TextView getStop,getDestination;
+    TextView justShowData;
     FirebaseFirestore firestore;
 
     RecyclerView rvFindBusDetails;
 
     ArrayList<BusFindModel> allBusFindsDetailsData;
+
+
+    // Progress bar
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +59,11 @@ public class FindYourBus extends AppCompatActivity {
         getDestination.setText(findDestinationStr);
 
         firestore = FirebaseFirestore.getInstance();
+
+
+
+        //progress dialog assigned
+        progressBar = findViewById(R.id.progress_bar);
 
 //
         // Define the query
@@ -92,31 +96,133 @@ public class FindYourBus extends AppCompatActivity {
 //            System.out.println(doc.getId() + " => " + doc.getData());
 //        }
 
+        FindedBusDetails();
+
+
+
+    }
+    public void FindedBusDetails(){
+
+        String searchingStoppageStr = getIntent().getStringExtra("BusStoppage");
+        String searchingDestinationStr = getIntent().getStringExtra("BusDestination");
+
+        progressBar.setVisibility(View.VISIBLE);
+        allBusFindsDetailsData = new ArrayList<>();
+        allBusFindsDetailsData.clear();
+
+        justShowData.setText(getIntent().getStringExtra("BusStoppage"));
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Define the query
+        Query query = db.collectionGroup("1236").whereEqualTo("busStopName",searchingStoppageStr);
+
+
+
+// Execute the query
+        query.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+
+                    @Override
+                    public void onSuccess(QuerySnapshot querySnapshot) {
+
+                        progressBar.setVisibility(View.GONE);
+
+                        List<DocumentSnapshot> documents = querySnapshot.getDocuments();
+
+                        // Convert the document data to an instance of the object model
+
+                        for (DocumentSnapshot doc : documents) {
+
+                            BusFindModel busFindModel = doc.toObject(BusFindModel.class);
+                            allBusFindsDetailsData.add(busFindModel);
+
+//                            // doc.getData() is never null for query doc snapshots
+//                            allBusFindsDetailsData.add((BusFindModel) doc.getData());
+
+//                            justShowData.setText(allBusFindsDetailsData);
+                                // Set data to recycle view
+
+                                rvFindBusDetails.setLayoutManager(new LinearLayoutManager(FindYourBus.this));
+                                rvFindBusDetails.setAdapter(new BusFindDataAdapter(FindYourBus.this,allBusFindsDetailsData));
+//
+
+
+
+
+
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressBar.setVisibility(View.GONE);
+
+                        System.out.println("Error getting documents: " + e);
+                    }
+                });
 
 
 
     }
 
-    public  void FindedBusDetails(){
+
+    public  void FindedBusDetailss(){
+        progressBar.setVisibility(View.VISIBLE);
         allBusFindsDetailsData = new ArrayList<>();
         allBusFindsDetailsData.clear();
 
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-//
-//        Query query = firestore.collectionGroup("0000")
-//                .whereEqualTo("busStopName", "Raipur");
-//        query.get()
+        justShowData.setText("doc.getData().toString()");
 
-        firestore.collection("Buses").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Bus Number")
-                .get()
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Define the query
+        Query query = db.collectionGroup("1236");
+
+
+
+// Execute the query
+        query.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+
                     @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot documentSnapshot:list){
-                            List<BusFindModel> data = (List<BusFindModel>) documentSnapshot.toObject(BusFindModel.class);
-                            allBusFindsDetailsData.addAll(data);
+                    public void onSuccess(QuerySnapshot querySnapshot) {
+
+                        progressBar.setVisibility(View.GONE);
+
+                        List<DocumentSnapshot> documents = querySnapshot.getDocuments();
+
+                        // Convert the document data to an instance of the object model
+
+                        for (DocumentSnapshot doc : documents) {
+
+                            BusFindModel busFindModel = doc.toObject(BusFindModel.class);
+                            allBusFindsDetailsData.add(busFindModel);
+
+//                            // doc.getData() is never null for query doc snapshots
+//                            allBusFindsDetailsData.add((BusFindModel) doc.getData());
+
+//                            justShowData.setText(allBusFindsDetailsData);
+                            // Set data to recycle view
+
+                            rvFindBusDetails.setLayoutManager(new LinearLayoutManager(FindYourBus.this));
+                            rvFindBusDetails.setAdapter(new BusFindDataAdapter(FindYourBus.this,allBusFindsDetailsData));
+//
+
+
+
+
+
                         }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressBar.setVisibility(View.GONE);
+
+                        System.out.println("Error getting documents: " + e);
                     }
                 });
 
@@ -125,28 +231,3 @@ public class FindYourBus extends AppCompatActivity {
     }
 
 }
-
-//
-//firestore.collection().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//
-//
-//@Override
-//public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//        for (QueryDocumentSnapshot value : queryDocumentSnapshots) {
-//        // doc.getData() is never null for query doc snapshots
-//        Toast.makeText(getApplicationContext(),value.getId()+" Home " + value.getData(), Toast.LENGTH_SHORT).show();
-//
-//        System.out.println(value.getId() + " => " + value.getData());
-//        // Set data ta recycle view
-//        rvFindBusDetails.setLayoutManager(new LinearLayoutManager(FindYourBus.this));
-//        rvFindBusDetails.setAdapter(new BusFindDataAdapter(FindYourBus.this,allBusFindsDetailsData));
-//        }
-//        }
-//        })
-//        .addOnFailureListener(new OnFailureListener() {
-//@Override
-//public void onFailure(@NonNull Exception e) {
-//        System.out.println("Error getting documents: " + e);
-//
-//        }
-//        });

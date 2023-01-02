@@ -68,7 +68,7 @@ public class AddStopsPage extends AppCompatActivity {
     TextView busStopIndexShow; //show the index before add stops
     TextView busExitTime,busReachTime;
     EditText busStopName,busWaitingTime;
-    String busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr;
+    String busName,busType,busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr;
     RecyclerView rvBusStopsData;
 
     ArrayList<BusStopsModel> busStopsModelsData;  // Bus Stop Model because we get the all data with the form of Bus Model and we get as Array List.
@@ -102,6 +102,8 @@ public class AddStopsPage extends AppCompatActivity {
 
         // Getting the key
         busNumberKey = getIntent().getStringExtra("BusNumberKey");
+        busName = getIntent().getStringExtra("BusNameKey");
+        busType = getIntent().getStringExtra("BusTypeKey");
 
 
         //progress dialog assigned
@@ -206,7 +208,7 @@ public class AddStopsPage extends AppCompatActivity {
                                 busWaitingTimeStr = busWaitingTime.getText().toString();
                                 busExitTimeStr = busExitTime.getText().toString();
                                 // send data to Firebase
-                                BusStopsModel busStopsModel = new BusStopsModel(""+busStopIndex,busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr);
+                                BusStopsModel busStopsModel = new BusStopsModel(""+busStopIndex,busName,busType,busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr);
                                 DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Stops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection(busNumberKey).document(""+busStopIndex);
                                 documentReference.set(busStopsModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

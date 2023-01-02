@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         toggle.getDrawerArrowDrawable().setColor(Color.WHITE);
         toggle.syncState();
 
-        btnSearch = findViewById(R.id.searchBtn);
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -108,30 +107,11 @@ public class MainActivity extends AppCompatActivity {
         etStoppage = findViewById(R.id.etStoppage);
         etDestination = findViewById(R.id.etDestination);
 
-        btnSearch.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                if(TextUtils.isEmpty(etStoppage.getText().toString())){
-                    etStoppage.setError("Stoppage cannot be empty");
-                    etStoppage.requestFocus();
-                }else if(TextUtils.isEmpty(etDestination.getText().toString())){
-                    etDestination.setError("Destination cannot be empty");
-                    etDestination.requestFocus();
-                }else{
-                    FindYourBusPage(etStoppage.getText().toString(),etDestination.getText().toString());
-                }
-            }
-        });
 
     }
 
-    public void Clicked(View view){
 
-        etStoppage.setText("");
-        etDestination.setText("");
-        Toast.makeText(this,"clicked",Toast.LENGTH_SHORT).show();
-    }
     public void SignInPage(){
         Intent i = new Intent(getApplicationContext(), SignInPage.class);
         this.startActivity(i);
@@ -143,6 +123,19 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Find",Toast.LENGTH_SHORT).show();
 
         startActivity(new Intent(getApplicationContext(), FindYourBus.class).putExtra("BusStoppage",busStoppage).putExtra("BusDestination",busDestination));
+    }
+    public void FindBtn(View view){
+        if(TextUtils.isEmpty(etStoppage.getText().toString())){
+            etStoppage.setError("Stoppage cannot be empty");
+            etStoppage.requestFocus();
+        }else if(TextUtils.isEmpty(etDestination.getText().toString())){
+            etDestination.setError("Destination cannot be empty");
+            etDestination.requestFocus();
+        }else{
+            FindYourBusPage(etStoppage.getText().toString(),etDestination.getText().toString());
+            etStoppage.setText("");
+            etDestination.setText("");
+        }
     }
 //
 

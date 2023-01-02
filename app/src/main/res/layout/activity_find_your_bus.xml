@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".FindYourBus.FindYourBus">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,21 +23,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Searching for "
+                android:textSize="@dimen/_14ssp"
                 />
             <TextView
                 android:id="@+id/tvGetStoppage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="stoppage"
+                android:textSize="@dimen/_16ssp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" to "
+                android:textSize="@dimen/_14ssp"
                 />
             <TextView
                 android:id="@+id/tvGetDestination"
-
+                android:textSize="@dimen/_16ssp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="destination"
@@ -48,6 +53,7 @@
 
 
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFindYourBus"
             android:layout_width="match_parent"
@@ -56,5 +62,17 @@
             />
           </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

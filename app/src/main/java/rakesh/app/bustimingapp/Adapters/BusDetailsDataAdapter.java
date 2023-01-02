@@ -57,6 +57,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
 
     @Override
     public void onBindViewHolder(@NonNull BusDetailsDataHolder holder, int position) {
+
         holder.busNumber.setText(allBusDetailsData.get(position).getBusNumber());
         holder.busName.setText(allBusDetailsData.get(position).getBusName());
         holder.busType.setText(allBusDetailsData.get(position).getBusType());
@@ -170,7 +171,7 @@ final String busNumberStr = allBusDetailsData.get(holder.getAdapterPosition()).g
             @Override
             public void onClick(View view) {
 
-                allBuseDetails.startActivity(new Intent(allBuseDetails, AddStopsPage.class).putExtra("BusNumberKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()));
+                allBuseDetails.startActivity(new Intent(allBuseDetails, AddStopsPage.class).putExtra("BusNumberKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()).putExtra("BusNameKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusName()).putExtra("BusTypeKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusType()));
             }
         });
     }

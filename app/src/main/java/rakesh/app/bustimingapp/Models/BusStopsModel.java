@@ -2,14 +2,32 @@ package rakesh.app.bustimingapp.Models;
 
 public class BusStopsModel {
     String stopsIndex;
-    String busStopName,busReachTime,busExitTime,busWaitingTime;
+    String busName,busType,busStopName,busReachTime,busExitTime,busWaitingTime;
 
     public BusStopsModel(){
 
     }
 
-    public BusStopsModel(String stopsIndex, String busStopName, String busReachTime, String busExitTime, String busWaitingTime) {
+    public String getBusType() {
+        return busType;
+    }
+
+    public void setBusType(String busType) {
+        this.busType = busType;
+    }
+
+    public String getBusName() {
+        return busName;
+    }
+
+    public void setBusName(String busName) {
+        this.busName = busName;
+    }
+
+    public BusStopsModel(String stopsIndex, String busName, String busType, String busStopName, String busReachTime, String busExitTime, String busWaitingTime) {
         this.stopsIndex = stopsIndex;
+        this.busName = busName;
+        this.busType = busType;
         this.busStopName = busStopName;
         this.busReachTime = busReachTime;
         this.busExitTime = busExitTime;

@@ -1,20 +1,20 @@
 package rakesh.app.bustimingapp.Models;
 
 public class BusFindModel {
-    private String busName,busType,busSource,busDestination,busSourceTime,busDestinationTime,busArrivalTime;
+    private String busName,busType,busExitTime, busReachTime, busStopName, busWaitingTime;
 
-    public BusFindModel(){
+
+    public BusFindModel() {
 
     }
 
-    public BusFindModel(String busName, String busType, String busSource, String busDestination, String busSourceTime, String busDestinationTime, String busArrivalTime) {
+    public BusFindModel(String busName, String busType, String busExitTime, String busReachTime, String busStopName, String busWaitingTime) {
         this.busName = busName;
         this.busType = busType;
-        this.busSource = busSource;
-        this.busDestination = busDestination;
-        this.busSourceTime = busSourceTime;
-        this.busDestinationTime = busDestinationTime;
-        this.busArrivalTime = busArrivalTime;
+        this.busExitTime = busExitTime;
+        this.busReachTime = busReachTime;
+        this.busStopName = busStopName;
+        this.busWaitingTime = busWaitingTime;
     }
 
     public String getBusName() {
@@ -33,45 +33,35 @@ public class BusFindModel {
         this.busType = busType;
     }
 
-    public String getBusSource() {
-        return busSource;
+    public String getBusExitTime() {
+        return busExitTime;
     }
 
-    public void setBusSource(String busSource) {
-        this.busSource = busSource;
+    public void setBusExitTime(String busExitTime) {
+        this.busExitTime = busExitTime;
     }
 
-    public String getBusDestination() {
-        return busDestination;
+    public String getBusReachTime() {
+        return busReachTime;
     }
 
-    public void setBusDestination(String busDestination) {
-        this.busDestination = busDestination;
+    public void setBusReachTime(String busReachTime) {
+        this.busReachTime = busReachTime;
     }
 
-    public String getBusSourceTime() {
-        return busSourceTime;
+    public String getBusStopName() {
+        return busStopName;
     }
 
-    public void setBusSourceTime(String busSourceTime) {
-        this.busSourceTime = busSourceTime;
+    public void setBusStopName(String busStopName) {
+        this.busStopName = busStopName;
     }
 
-    public String getBusDestinationTime() {
-        return busDestinationTime;
+    public String getBusWaitingTime() {
+        return busWaitingTime;
     }
 
-    public void setBusDestinationTime(String busDestinationTime) {
-        this.busDestinationTime = busDestinationTime;
+    public void setBusWaitingTime(String busWaitingTime) {
+        this.busWaitingTime = busWaitingTime;
     }
-
-    public String getBusArrivalTime() {
-        return busArrivalTime;
-    }
-
-    public void setBusArrivalTime(String busArrivalTime) {
-        this.busArrivalTime = busArrivalTime;
-    }
-
-
 }

@@ -19,7 +19,7 @@
             android:weightSum="1"
             >
             <TextView
-                android:id="@+id/tvFbdsBusName"
+                android:id="@+id/tvBfdaBusName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_4sdp"
@@ -27,6 +27,18 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_18ssp"
                 />
+            <TextView
+                android:layout_marginLeft="@dimen/_18ssp"
+                android:id="@+id/tvBfdaBusType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectagular_shape"
+                android:backgroundTint="@color/white"
+                android:padding="@dimen/_2sdp"
+                android:text="Bus Type"
+                android:textAlignment="center"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_15ssp" />
 
         </LinearLayout>
 
@@ -39,7 +51,7 @@
             >
 
             <TextView
-                android:id="@+id/tvBddsSource"
+                android:id="@+id/tvBfdaSource"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -58,7 +70,7 @@
                 />
 
             <TextView
-                android:id="@+id/tvBddsDestination"
+                android:id="@+id/tvBfdaDestination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -78,7 +90,7 @@
             >
 
             <TextView
-                android:id="@+id/asdsBusReachTime"
+                android:id="@+id/tvBfdaBusReachTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="11 : 55 AM"
@@ -99,7 +111,7 @@
                 />
 
             <TextView
-                android:id="@+id/asdsBusExitTime"
+                android:id="@+id/tvBfdaBusExitTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12 : 05 PM"
@@ -115,7 +127,7 @@
             android:orientation="horizontal"
             >
             <TextView
-                android:id="@+id/asdsBusWaitingTime"
+                android:id="@+id/tvBfdaBusWaitingTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/_5ssp"
@@ -127,7 +139,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="mins of arrival"
+                android:text="mins of waiting"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15ssp"
 

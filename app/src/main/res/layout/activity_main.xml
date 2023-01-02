@@ -91,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:background="@color/primary_color"
+                android:onClick="FindBtn"
                 >
                 <ImageView
                     android:id="@+id/searchBtn"
@@ -98,7 +99,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:onClick="Clicked"
                     android:src="@drawable/ic_search"
                     app:tint="@color/white"
                     />

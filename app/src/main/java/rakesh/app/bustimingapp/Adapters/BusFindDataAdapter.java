@@ -31,13 +31,18 @@ public class BusFindDataAdapter extends RecyclerView.Adapter<BusFindDataAdapter.
     @NonNull
     @Override
     public BusFindDataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new BusFindDataHolder(LayoutInflater.from(allFindBusDetails).inflate(R.layout.bus_details_data_show,parent,false));
+        return new BusFindDataHolder(LayoutInflater.from(allFindBusDetails).inflate(R.layout.find_bus_data_show,parent,false));
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull BusFindDataHolder holder, int position) {
-//        holder.busName.setText(allFindBusDetailsData.get(position).getBusName());
+        holder.busName.setText(allFindBusDetailsData.get(position).getBusName());
+        holder.busType.setText(allFindBusDetailsData.get(position).getBusType());
+        holder.busSource.setText(allFindBusDetailsData.get(position).getBusStopName());
+        holder.busReachTime.setText(allFindBusDetailsData.get(position).getBusReachTime());
+        holder.busExitTime.setText(allFindBusDetailsData.get(position).getBusExitTime());
+        holder.busWaitingTime.setText(allFindBusDetailsData.get(position).getBusWaitingTime());
 
     }
 
@@ -48,19 +53,18 @@ public class BusFindDataAdapter extends RecyclerView.Adapter<BusFindDataAdapter.
 
      class BusFindDataHolder extends RecyclerView.ViewHolder {
 
-         TextView busNumber,busName,busType,busSource,busDestination,busSourceTime,busDestinationTime;
+         TextView busName,busType,busSource,busDestination,busReachTime,busExitTime,busWaitingTime;
 
         public BusFindDataHolder(@NonNull View itemView) {
             super(itemView);
 
-//            busNumber = itemView.findViewById(R.id.tvFbdsBusName);
-            busName = itemView.findViewById(R.id.tvFbdsBusName);
-//            busType= itemView.findViewById(R.id.tvBddsBusType);
-//            busSource = itemView.findViewById(R.id.tvBddsSource);
-//            busDestination = itemView.findViewById(R.id.tvBddsDestination);
-//            busSourceTime = itemView.findViewById(R.id.tvBddsSourceTime);
-//            busDestinationTime = itemView.findViewById(R.id.tvBddsDestinationTime);
-
+            busName = itemView.findViewById(R.id.tvBfdaBusName);
+            busType= itemView.findViewById(R.id.tvBfdaBusType);
+            busSource = itemView.findViewById(R.id.tvBfdaSource);
+            busDestination = itemView.findViewById(R.id.tvBfdaDestination);
+            busReachTime = itemView.findViewById(R.id.tvBfdaBusReachTime);
+            busExitTime = itemView.findViewById(R.id.tvBfdaBusExitTime);
+            busWaitingTime = itemView.findViewById(R.id.tvBfdaBusWaitingTime);
 
         }
     }
