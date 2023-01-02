@@ -52,7 +52,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
     @Override
     public BusDetailsDataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        return new BusDetailsDataHolder(LayoutInflater.from(allBuseDetails).inflate(R.layout.find_bus_data_show,parent,false));
+        return new BusDetailsDataHolder(LayoutInflater.from(allBuseDetails).inflate(R.layout.bus_details_data_show,parent,false));
     }
 
     @Override
