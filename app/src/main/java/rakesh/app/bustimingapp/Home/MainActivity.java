@@ -10,20 +10,29 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import rakesh.app.bustimingapp.Auth.SignInPage;
 import rakesh.app.bustimingapp.BusRegistration.AllBuseDetails;
+import rakesh.app.bustimingapp.FindYourBus.FindYourBus;
 import rakesh.app.bustimingapp.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.sideBar);
         toolbar = findViewById(R.id.toolBar);
 
+        etStoppage = findViewById(R.id.etStoppage);
+        etDestination = findViewById(R.id.etStoppage);
 
         setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -72,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
+
                     case R.id.menu_all_bus_details:
                         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                         if(currentUser != null){
@@ -96,13 +108,22 @@ public class MainActivity extends AppCompatActivity {
         etStoppage = findViewById(R.id.etStoppage);
         etDestination = findViewById(R.id.etDestination);
 
-        // Search btn clicked
         btnSearch.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                SearchButton();
+                if(TextUtils.isEmpty(etStoppage.getText().toString())){
+                    etStoppage.setError("Stoppage cannot be empty");
+                    etStoppage.requestFocus();
+                }else if(TextUtils.isEmpty(etDestination.getText().toString())){
+                    etDestination.setError("Destination cannot be empty");
+                    etDestination.requestFocus();
+                }else{
+                    FindYourBusPage(etStoppage.getText().toString(),etDestination.getText().toString());
+                }
             }
         });
+
     }
 
     public void Clicked(View view){
@@ -116,8 +137,14 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(i);
         Toast.makeText(getApplicationContext(),"SignInPage",Toast.LENGTH_SHORT).show();
     }
-    public void SearchButton(){
-        Toast.makeText(getApplicationContext(),"Search Btn",Toast.LENGTH_SHORT).show();
 
+
+    public void FindYourBusPage(String busStoppage,String busDestination){
+        Toast.makeText(getApplicationContext(),"Find",Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(getApplicationContext(), FindYourBus.class).putExtra("BusStoppage",busStoppage).putExtra("BusDestination",busDestination));
     }
+//
+
+
 }

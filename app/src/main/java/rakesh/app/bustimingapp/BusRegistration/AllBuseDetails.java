@@ -155,7 +155,7 @@ public class AllBuseDetails extends AppCompatActivity {
                                         List<BusModel> data = value.toObjects(BusModel.class);
                                         allBusDetailsData.addAll(data);
 
-                                        // Set data ta recycle view
+                                        // Set data to recycle view
                                         rvBusDetails.setLayoutManager(new LinearLayoutManager(AllBuseDetails.this));
                                         rvBusDetails.setAdapter(new BusDetailsDataAdapter(AllBuseDetails.this,allBusDetailsData));
 

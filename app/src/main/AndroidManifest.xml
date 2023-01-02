@@ -21,7 +21,7 @@
             android:name=".Auth.ForgetPasswordPage"
             android:exported="false" />
         <activity
-            android:name=".FindYourBus"
+            android:name=".FindYourBus.FindYourBus"
             android:exported="false" />
         <activity
             android:name=".SplashScreen.SplashScreen"

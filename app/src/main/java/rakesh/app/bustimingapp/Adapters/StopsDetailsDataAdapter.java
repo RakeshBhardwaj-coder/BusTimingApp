@@ -140,9 +140,6 @@ public class StopsDetailsDataAdapter extends RecyclerView.Adapter<StopsDetailsDa
 
 
 
-//
-
-
             }
         }
 }

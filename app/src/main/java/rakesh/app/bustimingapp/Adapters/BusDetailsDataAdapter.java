@@ -52,7 +52,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
     @Override
     public BusDetailsDataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        return new BusDetailsDataHolder(LayoutInflater.from(allBuseDetails).inflate(R.layout.bus_details_data_show,parent,false));
+        return new BusDetailsDataHolder(LayoutInflater.from(allBuseDetails).inflate(R.layout.find_bus_data_show,parent,false));
     }
 
     @Override
@@ -70,6 +70,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
             @Override
             public void onClick(View view) {
                 Toast.makeText(allBuseDetails.getApplicationContext(), "Edit",Toast.LENGTH_SHORT).show();
+
                 holder.editBtnBuilder.setTitle("Alert")
                         .setMessage("Do you want to Edit.")
                         .setCancelable(true)
@@ -184,6 +185,7 @@ final String busNumberStr = allBusDetailsData.get(holder.getAdapterPosition()).g
     }
 
     class  BusDetailsDataHolder extends RecyclerView.ViewHolder{
+
         TextView busNumber,busName,busType,busSource,busDestination,busSourceTime,busDestinationTime;
 
         // Edit and Delete Button we access here

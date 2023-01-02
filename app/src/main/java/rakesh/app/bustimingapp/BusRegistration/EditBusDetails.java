@@ -113,13 +113,11 @@ public class EditBusDetails extends AppCompatActivity implements AdapterView.OnI
 
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"hellowEdit",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"hellowEdit",Toast.LENGTH_SHORT).show();
                UpdateData();
 
             }
         });
-
-
 
         //cancel btn click dialog box will be show
         cancelBtn = findViewById(R.id.btnCancel);

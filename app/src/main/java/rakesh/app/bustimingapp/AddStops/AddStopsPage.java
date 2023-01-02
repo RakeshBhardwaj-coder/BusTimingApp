@@ -147,7 +147,7 @@ public class AddStopsPage extends AppCompatActivity {
                                 //getting the count of stops in firebase
                                 busStopIndex = StopsDetailsDataAdapter.stopCounts;
 
-                                    addStopsBusNumber.setText(selectedBusModel.getBusNumber());
+                                addStopsBusNumber.setText(selectedBusModel.getBusNumber());
 
                                 addStopsBusName.setText(selectedBusModel.getBusName());
                                 addStopsBusType.setText(selectedBusModel.getBusType());
