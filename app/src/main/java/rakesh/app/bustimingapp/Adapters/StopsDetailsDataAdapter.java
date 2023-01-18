@@ -90,7 +90,9 @@ public class StopsDetailsDataAdapter extends RecyclerView.Adapter<StopsDetailsDa
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
                                                     Toast.makeText(addStopsPage, "Stop "+holder.busStopIndex.getText()+" Deleted",Toast.LENGTH_SHORT).show();
+
                                                     stopCounts = stopCounts - 1 ;
+                                                    AddStopsPage.busStopIndex = stopCounts;
 
                                                 }
                                             }
@@ -119,7 +121,6 @@ public class StopsDetailsDataAdapter extends RecyclerView.Adapter<StopsDetailsDa
 
         ImageView editStopBtn, deleteStopBtn;
         AlertDialog.Builder editStopBtnBuilder,deleteStopBtnBuilder;
-
 
         // for edit the stop data
 

@@ -8,7 +8,7 @@
     android:padding="@dimen/_10sdp"
     >
 
-    // Bdds means Bus Details Data Show
+<!--    // Bdds means Bus Details Data Show-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                 android:text="Bus Type"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_15ssp" />
+                android:textSize="@dimen/_14ssp" />
 
         </LinearLayout>
 
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Source"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_15ssp"
 
                 />
 
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Destination"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_15ssp"
 
                 />
         </LinearLayout>

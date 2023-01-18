@@ -79,6 +79,7 @@ public class BusDetailsDataAdapter extends RecyclerView.Adapter<BusDetailsDataAd
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // passing the BusNumber key for edit the details to edit bus details.
+
                                 allBuseDetails.startActivity(new Intent(allBuseDetails, EditBusDetails.class).putExtra("BusNumberKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()));
                             }
                         })
@@ -171,7 +172,7 @@ final String busNumberStr = allBusDetailsData.get(holder.getAdapterPosition()).g
             @Override
             public void onClick(View view) {
 
-                allBuseDetails.startActivity(new Intent(allBuseDetails, AddStopsPage.class).putExtra("BusNumberKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()).putExtra("BusNameKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusName()).putExtra("BusTypeKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusType()));
+                allBuseDetails.startActivity(new Intent(allBuseDetails, AddStopsPage.class).putExtra("BusNumberKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusNumber()).putExtra("BusNameKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusName()).putExtra("BusTypeKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusType()).putExtra("BusFinalDestinationKey",allBusDetailsData.get(holder.getAdapterPosition()).getBusDestination()));
             }
         });
     }

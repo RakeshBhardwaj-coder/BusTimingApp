@@ -8,6 +8,7 @@ import android.os.Handler;
 
 import rakesh.app.bustimingapp.Home.MainActivity;
 import rakesh.app.bustimingapp.R;
+import rakesh.app.bustimingapp.TestSearching.SearchingAbilityCheck;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), SearchingAbilityCheck.class));
                 finish();
             }
         },1000);

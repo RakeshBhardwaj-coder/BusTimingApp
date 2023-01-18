@@ -43,6 +43,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import rakesh.app.bustimingapp.Auth.SignInPage;
+import rakesh.app.bustimingapp.FindYourBus.FindYourBus;
 import rakesh.app.bustimingapp.Models.BusModel;
 import rakesh.app.bustimingapp.Home.MainActivity;
 import rakesh.app.bustimingapp.R;
@@ -297,8 +298,10 @@ public class BusRegistrationPage extends AppCompatActivity implements AdapterVie
 
                             String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             Toast.makeText(getApplicationContext(), "a"+currentUserId, Toast.LENGTH_SHORT).show();
+//                            FindYourBus.busNumberList.add(busNumberStr);
 
                             //Using the model to set the data to firestore
+                            FindYourBus.addBusNumber(busNumberStr);
                             BusModel busModel = new BusModel(busNumberStr,busTypeStr,busNameStr,sourceStr,destinationStr,sourceTimeStr,destinationTimeStr);
 
                             DocumentReference documentReference = firestore.collection("Buses").document(currentUserId).collection("Bus Number").document(busNumberStr);

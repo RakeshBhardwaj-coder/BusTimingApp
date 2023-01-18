@@ -43,6 +43,7 @@ public class BusFindDataAdapter extends RecyclerView.Adapter<BusFindDataAdapter.
         holder.busReachTime.setText(allFindBusDetailsData.get(position).getBusReachTime());
         holder.busExitTime.setText(allFindBusDetailsData.get(position).getBusExitTime());
         holder.busWaitingTime.setText(allFindBusDetailsData.get(position).getBusWaitingTime());
+        holder.busDestination.setText(allFindBusDetailsData.get(position).getBusFinalDestination());
 
     }
 

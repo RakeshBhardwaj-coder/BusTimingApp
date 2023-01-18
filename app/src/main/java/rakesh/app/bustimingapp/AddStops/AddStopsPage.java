@@ -36,7 +36,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.OrderBy;
+import com.google.firestore.admin.v1.Index;
+import com.google.firestore.admin.v1.IndexOrBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,14 +65,15 @@ public class AddStopsPage extends AppCompatActivity {
 
     TextView addStopsBusNumber,addStopsBusName,addStopsBusType,addStopsBusSource,addStopsBusDestination,addStopsBusSourceTime,addStopsBusDestinationTime;
 
-    int busStopIndex;
+    public static int busStopIndex;
+
     AlertDialog.Builder addStopsBtnBuilder;
     ProgressDialog progressDialog;
     // for stop details builder
     TextView busStopIndexShow; //show the index before add stops
     TextView busExitTime,busReachTime;
     EditText busStopName,busWaitingTime;
-    String busName,busType,busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr;
+    String busName,busType,busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr,busFinalDestination;
     RecyclerView rvBusStopsData;
 
     ArrayList<BusStopsModel> busStopsModelsData;  // Bus Stop Model because we get the all data with the form of Bus Model and we get as Array List.
@@ -104,6 +109,7 @@ public class AddStopsPage extends AppCompatActivity {
         busNumberKey = getIntent().getStringExtra("BusNumberKey");
         busName = getIntent().getStringExtra("BusNameKey");
         busType = getIntent().getStringExtra("BusTypeKey");
+        busFinalDestination = getIntent().getStringExtra("BusFinalDestinationKey");
 
 
         //progress dialog assigned
@@ -208,13 +214,14 @@ public class AddStopsPage extends AppCompatActivity {
                                 busWaitingTimeStr = busWaitingTime.getText().toString();
                                 busExitTimeStr = busExitTime.getText().toString();
                                 // send data to Firebase
-                                BusStopsModel busStopsModel = new BusStopsModel(""+busStopIndex,busName,busType,busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr);
+                                BusStopsModel busStopsModel = new BusStopsModel(""+busStopIndex,busName,busType,busStopNameStr,busReachTimeStr,busExitTimeStr,busWaitingTimeStr,busFinalDestination);
                                 DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Stops").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection(busNumberKey).document(""+busStopIndex);
                                 documentReference.set(busStopsModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
                                        // Get stops count and increment at same time
                                        GetStopCounts();
+                                       AutoIndexing();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -234,6 +241,23 @@ public class AddStopsPage extends AppCompatActivity {
         addStopsBtnBuilder.create().show();
     }
 
+    public void AutoIndexing(){
+
+//        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+//
+//        BusStopsModel busStopsModel = null;
+//        busStopsModel.put("busStopName", "ASCENDING");
+//
+//
+//        firestore.collection("__indexes__").add(BusStopsModel).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//            @Override
+//            public void onSuccess(DocumentReference documentReference) {
+//                // the index was created successfully
+//            }
+//        });
+
+
+    }
     public void SetBusReachTime(){
         final Calendar cldr = Calendar.getInstance();
         // time picker dialog
@@ -373,7 +397,7 @@ public class AddStopsPage extends AppCompatActivity {
                 .set(busStopIndexMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(),"Stop "+busStopIndex+busStopNameStr,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Stop "+(busStopIndex-1)+" "+busStopNameStr,Toast.LENGTH_SHORT).show();
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

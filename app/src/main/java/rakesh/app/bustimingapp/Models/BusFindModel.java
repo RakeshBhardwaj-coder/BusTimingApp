@@ -1,20 +1,29 @@
 package rakesh.app.bustimingapp.Models;
 
 public class BusFindModel {
-    private String busName,busType,busExitTime, busReachTime, busStopName, busWaitingTime;
+    private String busName,busType,busExitTime, busReachTime, busStopName, busWaitingTime,busFinalDestination;
 
 
     public BusFindModel() {
 
     }
 
-    public BusFindModel(String busName, String busType, String busExitTime, String busReachTime, String busStopName, String busWaitingTime) {
+    public BusFindModel(String busName, String busType, String busExitTime, String busReachTime, String busStopName, String busWaitingTime, String busFinalDestination) {
         this.busName = busName;
         this.busType = busType;
         this.busExitTime = busExitTime;
         this.busReachTime = busReachTime;
         this.busStopName = busStopName;
         this.busWaitingTime = busWaitingTime;
+        this.busFinalDestination = busFinalDestination;
+    }
+
+    public String getBusFinalDestination() {
+        return busFinalDestination;
+    }
+
+    public void setBusFinalDestination(String busFinalDestination) {
+        this.busFinalDestination = busFinalDestination;
     }
 
     public String getBusName() {

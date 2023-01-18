@@ -61,6 +61,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:weightSum="2"
                     >
 
                     <TextView
@@ -69,20 +70,24 @@
                         android:layout_height="wrap_content"
                         android:text="Bus Name"
                         android:textSize="@dimen/_18ssp"
+                        android:layout_weight="1"
 
                         />
 
                     <TextView
+                        android:layout_weight="1"
                         android:id="@+id/tvASPBusType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/rectagular_shape"
-                        android:padding="@dimen/_2sdp"
+                        android:padding="@dimen/_4sdp"
+
                         android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
                         android:text="Bus Type"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_15ssp" />
+                        android:textSize="@dimen/_14ssp" />
 
                 </LinearLayout>
 
@@ -98,7 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Source"
-                        android:textSize="@dimen/_18ssp"
+                        android:textSize="@dimen/_15ssp"
 
                         />
 
@@ -112,7 +117,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Destination"
-                        android:textSize="@dimen/_18ssp"
+                        android:textSize="@dimen/_15ssp"
 
                         />
                 </LinearLayout>
