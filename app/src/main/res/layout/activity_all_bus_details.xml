@@ -10,7 +10,7 @@
     android:id="@+id/drawableLayoutAllBusDetails"
     >
 
-    // 'As' means Add stops
+<!--    // 'As' means Add stops-->
 
     <RelativeLayout
         android:layout_width="match_parent"
